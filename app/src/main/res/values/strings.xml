@@ -7,4 +7,5 @@
     <string name="button_search">Search</string>
     <string name="button_about">About</string>
     <string name="image_mainactivity">Image Main Activity</string>
+    <string name="action_settings">Settings</string>
 </resources>
