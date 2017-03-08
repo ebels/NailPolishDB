@@ -2,4 +2,9 @@
     <string name="app_name">NailPolishDB</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
+    <string name="button_addnew">Add new Nailpolish</string>
+    <string name="button_viewdatabase">View Nail Polish Database</string>
+    <string name="button_search">Search</string>
+    <string name="button_about">About</string>
+    <string name="image_mainactivity">Image Main Activity</string>
 </resources>
