@@ -1,5 +1,6 @@
 package com.nailpolish.nailpolishdb;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,10 +17,10 @@ public class AddNew extends AppCompatActivity {
         Toolbar Toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(Toolbar);
 
-        // Get a support ActionBar corresponding to this toolbar
+        // Get a support actionBar corresponding to this toolbar
         ActionBar arrowup = getSupportActionBar();
 
-        // Enable the Up button
+        // Enable the "up" button
         arrowup.setDisplayHomeAsUpEnabled(true);
     }
 }
