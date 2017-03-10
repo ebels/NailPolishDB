@@ -13,13 +13,15 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="0dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="0dp"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:titleTextColor="@android:color/background_light"
+        app:theme="@style/ToolbarColoredBackArrow" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -92,7 +94,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="38dp"
         android:onClick="addnew"
-        android:text="@string/button_addnew"
+        android:text="@string/button_addnailpolish"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
