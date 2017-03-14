@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.content.Intent;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    /**Call setting when user taps the settings button*/
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            startActivity(new Intent(this, Settings.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /** Called when the user taps the "addnew" button */
