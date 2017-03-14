@@ -17,6 +17,10 @@
     <string name="button_addpolish2db">Add nailpolish to database</string>
     <string name="color_prompt">Choose a color</string>
     <string name="finish_prompt">Choose a finish</string>
+    <string name="title_settings">Settings</string>
+    <string name="preference_np_title">Nailpolish Title</string>
+    <string name="preference_np_key">nailpolishlist</string>
+    <string name="preference_np_default">p2, Essence, Maybelline</string>
 
     <string-array name="npcolor_arrays">
         <item>Red</item>
