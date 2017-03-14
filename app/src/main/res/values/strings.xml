@@ -15,4 +15,29 @@
     <string name="text_ID">ID</string>
     <string name="text_collection">Collection</string>
     <string name="button_addpolish2db">Add nailpolish to database</string>
+    <string name="color_prompt">Choose a color</string>
+    <string name="finish_prompt">Choose a finish</string>
+
+    <string-array name="npcolor_arrays">
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Yellow</item>
+        <item>Green</item>
+        <item>Black</item>
+        <item>Purple</item>
+        <item>Grey</item>
+    </string-array>
+
+    <string-array name="npfinish_arrays">
+        <item>Matte</item>
+        <item>Gloss</item>
+        <item>Cream</item>
+        <item>Jelly</item>
+        <item>Glitter</item>
+        <item>Shimmer</item>
+        <item>Metalic</item>
+        <item>Glow in the Dark</item>
+        <item>Crackle</item>
+        <item>Magnetic</item>
+    </string-array>
 </resources>
