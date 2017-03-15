@@ -3,10 +3,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditTextPreference
-        android:title="@string/preference_np_title"
-        android:key="@string/preference_np_key"
-        android:defaultValue="@string/preference_np_default"
-        android:inputType="textMultiLine" />
 
 </PreferenceScreen>
