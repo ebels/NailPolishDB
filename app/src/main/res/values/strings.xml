@@ -19,6 +19,8 @@
     <string name="finish_prompt">Choose a finish</string>
     <string name="title_settings">Settings</string>
     <string name="title_viewdb">Nail Polish Database</string>
+    <string name="heading_appdetails">App Details</string>
+    <string name="heading_dbdetails">Database Details</string>
 
     <string-array name="npcolor_arrays">
         <item>Red</item>
