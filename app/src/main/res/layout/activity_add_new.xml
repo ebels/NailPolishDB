@@ -9,7 +9,6 @@
     android:orientation="vertical" >
 
     <!-- TOOLBAR -->
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
