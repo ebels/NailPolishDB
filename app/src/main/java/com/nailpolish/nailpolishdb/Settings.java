@@ -11,19 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 
-/*public class Settings extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
-
-   /* @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.preferences);
-    }
-
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object value) {
-        return false;
-    }
-}*/
+import static com.nailpolish.nailpolishdb.R.id.toolbar;
 
 public class Settings extends PreferenceActivity {
 
@@ -35,7 +23,7 @@ public class Settings extends PreferenceActivity {
         getDelegate().onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_toolbar);
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        setSupportActionBar((Toolbar) findViewById(toolbar));
         addPreferencesFromResource(R.xml.preferences);
     }
 
