@@ -6,4 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.nailpolish.nailpolishdb.ViewDatabase">
 
+    <!-- TOOLBAR -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/title_viewdb"
+        app:titleTextColor="@android:color/background_light"
+        app:theme="@style/ToolbarColoredBackArrow" />
+
 </android.support.constraint.ConstraintLayout>
