@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+
 public class AddNew extends AppCompatActivity {
 
     private Spinner spinnercolor, spinnerfinish;
@@ -41,5 +42,5 @@ public class AddNew extends AppCompatActivity {
         adapter = ArrayAdapter.createFromResource(this, R.array.npfinish_arrays, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerfinish.setAdapter(adapter);
-    }
+        }
 }
