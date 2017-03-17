@@ -1,15 +1,10 @@
 <resources>
     <string name="app_name">NailPolishDB</string>
     <string name="edit_message">Enter a message</string>
-    <string name="button_send">Send</string>
-    <string name="button_addnew">Add</string>
     <string name="button_viewdatabase">View Nail Polish Database</string>
-    <string name="button_search">Search</string>
-    <string name="button_about">About</string>
     <string name="image_mainactivity">Image Main Activity</string>
     <string name="action_settings">Settings</string>
     <string name="text_Brand">Brand</string>
-    <string name="button_addbrand">Add new brand</string>
     <string name="button_addnailpolish">Add new nailpolish</string>
     <string name="text_Name">Name</string>
     <string name="text_ID">ID</string>
@@ -21,6 +16,7 @@
     <string name="title_viewdb">Nail Polish Database</string>
     <string name="heading_appdetails">App Details</string>
     <string name="heading_dbdetails">Database Details</string>
+    <string name="toolbar_search">Search</string>
 
     <string-array name="npcolor_arrays">
         <item>Red</item>
@@ -39,7 +35,7 @@
         <item>Jelly</item>
         <item>Glitter</item>
         <item>Shimmer</item>
-        <item>Metalic</item>
+        <item>Metallic</item>
         <item>Glow in the Dark</item>
         <item>Crackle</item>
         <item>Magnetic</item>
