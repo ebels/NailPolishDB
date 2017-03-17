@@ -17,6 +17,8 @@
     <string name="heading_appdetails">App Details</string>
     <string name="heading_dbdetails">Database Details</string>
     <string name="toolbar_search">Search</string>
+    <string name="switch_designcolor">Change Design Light/Dark</string>
+    <string name="settings_npcount">Nail Polishes in Database</string>
 
     <string-array name="npcolor_arrays">
         <item>Red</item>
