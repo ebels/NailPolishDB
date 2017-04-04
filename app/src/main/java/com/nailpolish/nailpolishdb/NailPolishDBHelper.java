@@ -58,17 +58,18 @@ public class NailPolishDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(NailPolishDBHelper.COLUMN_ID, COLUMN_ID);
-        values.put(NailPolishDBHelper.COLUMN_NAME, name);
-        values.put(NailPolishDBHelper.COLUMN_BRAND, brand);
-        values.put(NailPolishDBHelper.COLUMN_COLLECTION, collection);
-        values.put(NailPolishDBHelper.COLUMN_COLOR, color);
-        values.put(NailPolishDBHelper.COLUMN_FINISH, finish);
+        values.put(COLUMN_ID, COLUMN_ID);
+        values.put(COLUMN_NAME, name);
+        values.put(COLUMN_NPID, id);
+        values.put(COLUMN_BRAND, brand);
+        values.put(COLUMN_COLLECTION, collection);
+        values.put(COLUMN_COLOR, color);
+        values.put(COLUMN_FINISH, finish);
 
         db.insert(TABLE_NAILPOLISH_LIST, null, values);
         db.close();
     }
-
+/*
     public void ListViewNP (){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -98,5 +99,5 @@ public class NailPolishDBHelper extends SQLiteOpenHelper {
             NailPolishes.add(nailpolish);
         }
         cursor.close();
-    }
+    }*/
 }
