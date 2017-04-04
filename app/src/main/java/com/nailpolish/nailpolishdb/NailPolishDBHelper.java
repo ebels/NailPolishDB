@@ -20,7 +20,7 @@ public class NailPolishDBHelper extends SQLiteOpenHelper {
     /** If you change the database schema, you must increment the database version. */
     public static final String DB_NAME = "nailpolish_list.db";  //Databasename
     public static final int DB_VERSION = 1;     //Databaseversion
-    public static final String TABLE_NAILPOLISH_LIST = "nailpolish_list";
+    public static final String TABLE_NAME = "nailpolish_list";
 
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "product";
@@ -31,7 +31,7 @@ public class NailPolishDBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_FINISH = "finish";
 
     public static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + TABLE_NAILPOLISH_LIST + "(" +
+            "CREATE TABLE " + TABLE_NAME + "(" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_NAME + " TEXT NOT NULL, " +
                     COLUMN_NPID + "INTEGER NOT NULL" +
@@ -58,7 +58,6 @@ public class NailPolishDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(COLUMN_ID, COLUMN_ID);
         values.put(COLUMN_NAME, name);
         values.put(COLUMN_NPID, id);
         values.put(COLUMN_BRAND, brand);
@@ -66,38 +65,7 @@ public class NailPolishDBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_COLOR, color);
         values.put(COLUMN_FINISH, finish);
 
-        db.insert(TABLE_NAILPOLISH_LIST, null, values);
+        db.insert(TABLE_NAME, null, values);
         db.close();
     }
-/*
-    public void ListViewNP (){
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String[] projection = {
-                COLUMN_ID,
-                COLUMN_NAME,
-                COLUMN_NPID,
-                COLUMN_BRAND,
-                COLUMN_COLLECTION,
-                COLUMN_COLOR,
-                COLUMN_FINISH
-        };
-
-        Cursor cursor = db.query(
-                TABLE_NAILPOLISH_LIST,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-
-        List NailPolishes = new ArrayList<>();
-        while(cursor.moveToNext()){
-            long nailpolish = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_ID));
-            NailPolishes.add(nailpolish);
-        }
-        cursor.close();
-    }*/
 }

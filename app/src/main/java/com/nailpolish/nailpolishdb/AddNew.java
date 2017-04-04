@@ -1,10 +1,5 @@
 package com.nailpolish.nailpolishdb;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.net.MailTo;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -78,27 +73,5 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
         NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
         DbHelper.insertNP(name,npid,brand,collection,color,finish);
         Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_LONG).show();
-
-        /*
-        ContentValues values = new ContentValues();
-        values.put(DbHelper.COLUMN_ID, NailPolishDBHelper.COLUMN_ID);
-        values.put(DbHelper.COLUMN_NAME, name);
-        values.put(DbHelper.COLUMN_NPID, npid);
-        values.put(DbHelper.COLUMN_BRAND, brand);
-        values.put(DbHelper.COLUMN_COLLECTION, collection);
-        values.put(DbHelper.COLUMN_COLOR, color);
-        values.put(DbHelper.COLUMN_FINISH, finish);
-
-        long newRow = db.insert(DbHelper.TABLE_NAILPOLISH_LIST, null, values);
-        db.close();
-
-        NailPolishDBHelper dbhelper = new NailPolishDBHelper(getApplicationContext());
-
-        //insert new np to db
-        dbhelper.insertNP(name,npid,brand,collection,color,finish);
-*/
     }
-
-
-
 }
