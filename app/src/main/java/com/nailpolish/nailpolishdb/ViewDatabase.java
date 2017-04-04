@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import java.util.List;
+
 public class ViewDatabase extends AppCompatActivity {
 
     @Override
@@ -20,5 +22,11 @@ public class ViewDatabase extends AppCompatActivity {
         ActionBar arrowup = getSupportActionBar();
         // Enable the "up" button
         arrowup.setDisplayHomeAsUpEnabled(true);
+
+        //database handler
+        NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
+
+        //get all elements
+
     }
 }
