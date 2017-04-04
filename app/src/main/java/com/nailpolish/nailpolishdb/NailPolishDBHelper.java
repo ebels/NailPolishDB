@@ -70,6 +70,33 @@ public class NailPolishDBHelper extends SQLiteOpenHelper {
     }
 
     public void ListViewNP (){
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        String[] projection = {
+                COLUMN_ID,
+                COLUMN_NAME,
+                COLUMN_NPID,
+                COLUMN_BRAND,
+                COLUMN_COLLECTION,
+                COLUMN_COLOR,
+                COLUMN_FINISH
+        };
+
+        Cursor cursor = db.query(
+                TABLE_NAILPOLISH_LIST,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        List NailPolishes = new ArrayList<>();
+        while(cursor.moveToNext()){
+            long nailpolish = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_ID));
+            NailPolishes.add(nailpolish);
+        }
+        cursor.close();
     }
 }

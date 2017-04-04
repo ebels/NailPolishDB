@@ -4,6 +4,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.List;
 
@@ -27,6 +29,5 @@ public class ViewDatabase extends AppCompatActivity {
         NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
 
         //get all elements
-
     }
 }
