@@ -67,7 +67,7 @@ public class NailPolishDBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void gettallNPs (){
-        
+    public void getallNPs (){
+
     }
 }
