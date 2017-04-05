@@ -2,8 +2,14 @@ package com.nailpolish.nailpolishdb;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ebelsheiser on 03.04.2017.
@@ -12,7 +18,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class NailPolishDBHelper extends SQLiteOpenHelper {
 
     /* ------- DEFINE CONSTANTS ------- */
-        public static final String DB_NAME = "nailpolish_list.db";
+    public static final String DB_NAME = "nailpolish_list.db";
     public static final int DB_VERSION = 1;
     public static final String TABLE_NAME = "nailpolish_list";
 
@@ -67,7 +73,8 @@ public class NailPolishDBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void getallNPs (){
-
+    public Cursor getallNPs () {
+        String query = "SELECT * FROM " + TABLE_NAME;
+        
     }
 }

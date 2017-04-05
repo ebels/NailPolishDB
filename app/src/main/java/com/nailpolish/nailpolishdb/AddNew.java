@@ -69,9 +69,20 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
         String color = spinnercolor.getSelectedItem().toString();
         String finish = spinnerfinish.getSelectedItem().toString();
 
+        // Check if fields are empty then display message, else insert entries in database
+        if (name.matches("") && npid.matches("") && brand.matches("") && collection.matches(""))  {
+            Toast.makeText(this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
+        } else {
+            // Insert Data to database
+            NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
+            DbHelper.insertNP(name,npid,brand,collection,color,finish);
+            Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_LONG).show();
 
-        NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
-        DbHelper.insertNP(name,npid,brand,collection,color,finish);
-        Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_LONG).show();
+            // making input field text blank
+            editTextName.setText("");
+            editTextID.setText("");
+            editTextBrand.setText("");
+            editTextCollection.setText("");
+        }
     }
 }
