@@ -1,9 +1,11 @@
 package com.nailpolish.nailpolishdb;
 
+import android.nfc.Tag;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,6 +20,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
     private ArrayAdapter adapter;
     private EditText editTextName, editTextID, editTextBrand,editTextCollection;
     private Button btnAdd;
+    private static final String TAG = AddNew.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +78,10 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
         } else {
             // Insert Data to database
             NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
+            Log.d(TAG, "onClick() Befor calling insertNP method" );
             DbHelper.insertNP(name,npid,brand,collection,color,finish);
+            DbHelper.insertNP("Testname","023","testbrand","testcollection","testcolor","testfinish");
+            Log.d(TAG, "onClick() After calling insertNP method" );
             Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_LONG).show();
 
             // making input field text blank

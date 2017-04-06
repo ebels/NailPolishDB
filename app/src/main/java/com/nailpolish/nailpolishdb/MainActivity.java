@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,6 +13,8 @@ import android.view.View;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user taps the "addnew" button */
     public void addnew (View view) {
+        Log.d(TAG, "addnew() start activity..." );
         /** runtime binding between mainactivity and addnew activity */
         Intent intent = new Intent(this, AddNew.class);
         startActivity(intent);
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user taps the "viewdatabase" button */
     public void viewdatabase (View view) {
+        Log.d(TAG, "viewdatabase() start activity..." );
         /** runtime binding between mainactivity and viewdatabase activity */
         Intent intent = new Intent(this, ViewDatabase.class);
         startActivity(intent);
