@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user taps the "addnew" button */
     public void addnew (View view) {
-        Log.d(TAG, "addnew() start activity..." );
+        Log.d(TAG, "MainActivity() start activity addnew()..." );
         /** runtime binding between mainactivity and addnew activity */
         Intent intent = new Intent(this, AddNew.class);
         startActivity(intent);
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user taps the "viewdatabase" button */
     public void viewdatabase (View view) {
-        Log.d(TAG, "viewdatabase() start activity..." );
+        Log.d(TAG, "MainActivity() start activity viewdatabase()..." );
         /** runtime binding between mainactivity and viewdatabase activity */
         Intent intent = new Intent(this, ViewDatabase.class);
         startActivity(intent);
