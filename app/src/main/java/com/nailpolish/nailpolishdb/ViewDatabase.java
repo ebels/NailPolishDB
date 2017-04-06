@@ -46,6 +46,7 @@ public class ViewDatabase extends AppCompatActivity {
         // Enable the "up" button
         arrowup.setDisplayHomeAsUpEnabled(true);
 
+        //Todo: find mistake in code (Nullpointer Exception)
         Log.d(TAG, "onCreate() create cursor fetchallNPs()..." );
         cursor = dbHelper.fetchAllNPs();
 
