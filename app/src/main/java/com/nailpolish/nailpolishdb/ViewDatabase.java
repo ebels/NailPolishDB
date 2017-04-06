@@ -46,7 +46,7 @@ public class ViewDatabase extends AppCompatActivity {
         // Enable the "up" button
         arrowup.setDisplayHomeAsUpEnabled(true);
 
-        //Todo: find mistake in code (Nullpointer Exception)
+        //Todo: find mistake in code (Nullpointer Exception) > view Example Code in Android Studio
         Log.d(TAG, "onCreate() create cursor fetchallNPs()..." );
         cursor = dbHelper.fetchAllNPs();
 
