@@ -81,9 +81,7 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
 
     public Cursor fetchAllNPs() {
         Log.d(TAG, "fetchallNPs() Cursor..." );
-        //SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = getReadableDatabase().query(TABLE_NAME, new String[] {COLUMN_ID, COLUMN_NAME, COLUMN_NPID, COLUMN_BRAND, COLUMN_COLLECTION, COLUMN_COLOR, COLUMN_FINISH}, null, null, null, null, null);
-        //Cursor cursor = db.query(TABLE_NAME, new String[] {COLUMN_NAME, COLUMN_NPID, COLUMN_BRAND, COLUMN_COLLECTION, COLUMN_COLOR, COLUMN_FINISH}, null, null, null, null, null);
         Log.d(TAG, "fetchallNPs() return cursor..." );
         return cursor;
     }

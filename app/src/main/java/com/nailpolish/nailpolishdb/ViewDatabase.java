@@ -4,14 +4,17 @@ import android.app.LoaderManager;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
+import android.database.DataSetObserver;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,12 +26,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
+import java.util.concurrent.atomic.AtomicIntegerArray;
 
 public class ViewDatabase extends AppCompatActivity {
 
     private static final String TAG = ViewDatabase.class.getSimpleName();
     private SimpleCursorAdapter dataAdapter;    // This is the Adapter being used to display the list's data
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
