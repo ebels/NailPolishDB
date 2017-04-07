@@ -35,12 +35,12 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME + "(" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COLUMN_NAME + " TEXT" +
-                    COLUMN_NPID + "INTEGER" +
-                    COLUMN_BRAND + "TEXT" +
-                    COLUMN_COLLECTION + "TEXT" +
-                    COLUMN_COLOR + "TEXT" +
-                    COLUMN_FINISH + "TEXT)";
+                    COLUMN_NAME + " TEXT, " +
+                    COLUMN_NPID + " INTEGER, " +
+                    COLUMN_BRAND + " TEXT, " +
+                    COLUMN_COLLECTION + " TEXT, " +
+                    COLUMN_COLOR + " TEXT, " +
+                    COLUMN_FINISH + " TEXT)";
 
     /* ------- CONSTRUCTOR ------- */
     public NailPolishDBHelper (Context context) {
@@ -75,7 +75,6 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
 
         Log.d(TAG, "insertNP() executing query, inserting entries");
         getWritableDatabase().insert(TABLE_NAME, null, values);
-        //db.insert(TABLE_NAME, null, values);
         db.close();
         Log.d(TAG, "insertNP() insert successfull, close database connection");
     }
@@ -85,11 +84,5 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
         Cursor cursor = getReadableDatabase().query(TABLE_NAME, new String[] {COLUMN_NAME, COLUMN_NPID, COLUMN_BRAND, COLUMN_COLLECTION, COLUMN_COLOR, COLUMN_FINISH}, null, null, null, null, null);
         Log.d(TAG, "fetchallNPs() return cursor..." );
         return cursor;
-    }
-
-    public NailPolishDBHelper open() throws SQLException {
-        Log.d(TAG, "open() Make database writable..." );
-        getWritableDatabase();
-        return this;
     }
 }
