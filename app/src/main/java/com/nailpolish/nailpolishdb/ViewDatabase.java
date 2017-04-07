@@ -27,9 +27,7 @@ import java.util.List;
 public class ViewDatabase extends AppCompatActivity {
 
     private static final String TAG = ViewDatabase.class.getSimpleName();
-    NailPolishDBHelper dbHelper;
     private SimpleCursorAdapter dataAdapter;    // This is the Adapter being used to display the list's data
-    Cursor cursor;
 
 
     @Override
@@ -47,9 +45,11 @@ public class ViewDatabase extends AppCompatActivity {
         // Enable the "up" button
         arrowup.setDisplayHomeAsUpEnabled(true);
 
+        /* ------- GET ITEMS FROM DB ------- */
         //Todo: find mistake in code (Nullpointer Exception) > view Example Code in Android Studio
         Log.d(TAG, "onCreate() create cursor fetchallNPs()..." );
-        cursor = dbHelper.fetchAllNPs();
+        NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
+        Cursor cursor = dbHelper.fetchAllNPs();
 
         // For the cursor adapter, specify which columns go into which views
         String[] fromColumns = new String[]{dbHelper.COLUMN_NAME, dbHelper.COLUMN_NPID, dbHelper.COLUMN_BRAND, dbHelper.COLUMN_COLLECTION, dbHelper.COLUMN_COLOR, dbHelper.COLUMN_FINISH};

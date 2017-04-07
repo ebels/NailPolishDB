@@ -23,7 +23,7 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
     public static final int DB_VERSION = 1;
     public static final String TABLE_NAME = "nailpolish_list";
 
-    public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_ID = " _id ";
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_NPID = "npid";
     public static final String COLUMN_BRAND = "brand";
@@ -81,7 +81,9 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
 
     public Cursor fetchAllNPs() {
         Log.d(TAG, "fetchallNPs() Cursor..." );
-        Cursor cursor = getReadableDatabase().query(TABLE_NAME, new String[] {COLUMN_NAME, COLUMN_NPID, COLUMN_BRAND, COLUMN_COLLECTION, COLUMN_COLOR, COLUMN_FINISH}, null, null, null, null, null);
+        //SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = getReadableDatabase().query(TABLE_NAME, new String[] {COLUMN_ID, COLUMN_NAME, COLUMN_NPID, COLUMN_BRAND, COLUMN_COLLECTION, COLUMN_COLOR, COLUMN_FINISH}, null, null, null, null, null);
+        //Cursor cursor = db.query(TABLE_NAME, new String[] {COLUMN_NAME, COLUMN_NPID, COLUMN_BRAND, COLUMN_COLLECTION, COLUMN_COLOR, COLUMN_FINISH}, null, null, null, null, null);
         Log.d(TAG, "fetchallNPs() return cursor..." );
         return cursor;
     }
