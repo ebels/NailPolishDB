@@ -31,6 +31,7 @@ public class ViewDatabase extends AppCompatActivity {
     private SimpleCursorAdapter dataAdapter;    // This is the Adapter being used to display the list's data
     Cursor cursor;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
