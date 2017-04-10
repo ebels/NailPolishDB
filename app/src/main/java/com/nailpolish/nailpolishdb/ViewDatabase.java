@@ -2,6 +2,7 @@ package com.nailpolish.nailpolishdb;
 
 import android.app.LoaderManager;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.database.DataSetObserver;
@@ -26,6 +27,8 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -44,7 +47,7 @@ public class ViewDatabase extends AppCompatActivity {
 
         /* ------- TOOLBAR ------- */
         /** sets the toolbar as the app bar for the activity */
-        Toolbar Toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar Toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(Toolbar);
         // Get a support actionBar corresponding to this toolbar
         ActionBar arrowup = getSupportActionBar();
@@ -69,11 +72,20 @@ public class ViewDatabase extends AppCompatActivity {
                 fromColumns, toViews, 0);
 
         Log.d(TAG, "onCreate() Assign ListView to Adapter..." );
-        ListView listView = (ListView) findViewById(R.id.listview1);
+        final ListView listView = (ListView) findViewById(R.id.listview1);
         //Assign adpter to ListView
         listView.setAdapter(dataAdapter);
 
-        //Button delete
-        
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get nail polish name of selected item
+                Cursor item = (Cursor) dataAdapter.getItem(position);
+                String name = item.getString(item.getColumnIndexOrThrow("name"));
+
+                Intent intent = new Intent(ViewDatabase.this, Details.class);
+                intent.putExtra("item", name); //provide nail polish name to details activity
+                startActivity(intent);
+            }
+        });
     }
 }
