@@ -23,7 +23,7 @@ public class Details extends AppCompatActivity {
         ActionBar arrowup = getSupportActionBar(); // Get a support actionBar corresponding to this toolbar
         arrowup.setDisplayHomeAsUpEnabled(true); // Enable the "up" button
 
-        TextView tvname = (TextView) findViewById(R.id.textView_name);
+        TextView tvname = (TextView) findViewById(R.id.textView_id);
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         String id = intent.getStringExtra("id");
