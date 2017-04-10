@@ -50,13 +50,13 @@ public class ViewDatabase extends AppCompatActivity {
         arrowup.setDisplayHomeAsUpEnabled(true);
 
         /* ------- GET ITEMS FROM DB ------- */
-        //Todo: find mistake in code (Nullpointer Exception) > view Example Code in Android Studio
         Log.d(TAG, "onCreate() create cursor fetchallNPs()..." );
+
         NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
         Cursor cursor = dbHelper.fetchAllNPs();
 
         // For the cursor adapter, specify which columns go into which views
-        String[] fromColumns = new String[]{dbHelper.COLUMN_NAME, dbHelper.COLUMN_NPID, dbHelper.COLUMN_BRAND, dbHelper.COLUMN_COLLECTION, dbHelper.COLUMN_COLOR, dbHelper.COLUMN_FINISH};
+        String[] fromColumns = new String[]{dbHelper.COLUMN_NAME,dbHelper.COLUMN_NPID,dbHelper.COLUMN_BRAND,dbHelper.COLUMN_COLLECTION,dbHelper.COLUMN_COLOR,dbHelper.COLUMN_FINISH};
         int[] toViews = {R.id.name_tv, R.id.id_tv, R.id.brand_tv, R.id.collection_tv, R.id.color_tv, R.id.finish_tv};
 
         Log.d(TAG, "onCreate() create Data Adapter..." );
