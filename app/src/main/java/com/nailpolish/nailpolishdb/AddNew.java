@@ -78,11 +78,10 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
         } else {
             // Insert Data to database
             NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
-            Log.d(TAG, "onClick() Befor calling insertNP method" );
+            Log.d(TAG, "onClick() Write data in database..." );
             DbHelper.insertNP(name,npid,brand,collection,color,finish);
-            DbHelper.insertNP("Testname","023","testbrand","testcollection","testcolor","testfinish");
-            Log.d(TAG, "onClick() After calling insertNP method" );
-            Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_LONG).show();
+            Log.d(TAG, "onClick() Successfully created entry..." );
+            Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_SHORT).show();
 
             // making input field text blank
             editTextName.setText("");
