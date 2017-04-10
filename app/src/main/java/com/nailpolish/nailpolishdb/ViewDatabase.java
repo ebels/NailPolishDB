@@ -18,11 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,14 +51,14 @@ public class ViewDatabase extends AppCompatActivity {
         // Enable the "up" button
         arrowup.setDisplayHomeAsUpEnabled(true);
 
-        /* ------- GET ITEMS FROM DB ------- */
+        /* ------- SHOW ITEMS FROM DB IN LISTVIEW ------- */
         Log.d(TAG, "onCreate() create cursor fetchallNPs()..." );
 
         NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
         Cursor cursor = dbHelper.fetchAllNPs();
 
         // For the cursor adapter, specify which columns go into which views
-        String[] fromColumns = new String[]{dbHelper.COLUMN_NAME,dbHelper.COLUMN_NPID,dbHelper.COLUMN_BRAND,dbHelper.COLUMN_COLLECTION,dbHelper.COLUMN_COLOR,dbHelper.COLUMN_FINISH};
+        final String[] fromColumns = new String[]{dbHelper.COLUMN_NAME,dbHelper.COLUMN_NPID,dbHelper.COLUMN_BRAND,dbHelper.COLUMN_COLLECTION,dbHelper.COLUMN_COLOR,dbHelper.COLUMN_FINISH};
         int[] toViews = {R.id.name_tv, R.id.id_tv, R.id.brand_tv, R.id.collection_tv, R.id.color_tv, R.id.finish_tv};
 
         Log.d(TAG, "onCreate() create Data Adapter..." );
@@ -70,5 +72,8 @@ public class ViewDatabase extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listview1);
         //Assign adpter to ListView
         listView.setAdapter(dataAdapter);
+
+        //Button delete
+        
     }
 }
