@@ -64,11 +64,19 @@ public class ViewDatabase extends AppCompatActivity {
                 Log.d(TAG, "onItemClick() Stings..." );
                 String name = item.getString(item.getColumnIndexOrThrow("name"));
                 String npid = item.getString(item.getColumnIndexOrThrow("npid"));
+                String brand = item.getString(item.getColumnIndexOrThrow("brand"));
+                String collection = item.getString(item.getColumnIndexOrThrow("collection"));
+                String color = item.getString(item.getColumnIndexOrThrow("color"));
+                String finish = item.getString(item.getColumnIndexOrThrow("finish"));
 
                 Log.d(TAG, "onItemClick() Intent()..." );
                 Intent intent = new Intent(ViewDatabase.this, Details.class);
                 intent.putExtra("name", name); //provide nail polish name to details activity
-                intent.putExtra("id", npid);
+                intent.putExtra("npid", npid);
+                intent.putExtra("brand", brand);
+                intent.putExtra("collection", collection);
+                intent.putExtra("color", color);
+                intent.putExtra("finish", finish);
                 startActivity(intent);
             }
         });

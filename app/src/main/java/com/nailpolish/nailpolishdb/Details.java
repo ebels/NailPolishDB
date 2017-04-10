@@ -23,15 +23,31 @@ public class Details extends AppCompatActivity {
         ActionBar arrowup = getSupportActionBar(); // Get a support actionBar corresponding to this toolbar
         arrowup.setDisplayHomeAsUpEnabled(true); // Enable the "up" button
 
-        TextView tvname = (TextView) findViewById(R.id.textView_id);
+        TextView tvname = (TextView) findViewById(R.id.textView_name);
+        TextView tvnpid = (TextView) findViewById(R.id.textView_id);
+        TextView tvbrand = (TextView) findViewById(R.id.textView_brand);
+        TextView tvcollection = (TextView) findViewById(R.id.textView_collection);
+        TextView tvcolor = (TextView) findViewById(R.id.textView_color);
+        TextView tvfinish = (TextView) findViewById(R.id.textView_finish);
+
+
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
-        String id = intent.getStringExtra("id");
-        tvname.setText(id);
+        String npid = intent.getStringExtra("npid");
+        String brand = intent.getStringExtra("brand");
+        String collection = intent.getStringExtra("collection");
+        String color = intent.getStringExtra("color");
+        String finish = intent.getStringExtra("finish");
 
         //Set custom Toolbar title
         Toolbar.setTitle("Details " + name);
 
-
+        //Set TextViews
+        tvname.setText(name);
+        tvnpid.setText(npid);
+        tvbrand.setText(brand);
+        tvcollection.setText(collection);
+        tvcollection.setText(color);
+        tvfinish.setText(finish);
     }
 }
