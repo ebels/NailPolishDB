@@ -25,11 +25,13 @@ public class Details extends AppCompatActivity {
 
         TextView tvname = (TextView) findViewById(R.id.textView_name);
         Intent intent = getIntent();
-        String name = intent.getStringExtra("item");
-        tvname.setText(name);
+        String name = intent.getStringExtra("name");
+        String id = intent.getStringExtra("id");
+        tvname.setText(id);
 
         //Set custom Toolbar title
         Toolbar.setTitle("Details " + name);
+
 
     }
 }
