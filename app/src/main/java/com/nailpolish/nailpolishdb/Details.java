@@ -53,7 +53,7 @@ public class Details extends AppCompatActivity {
         tvnpid.setText(npid);
         tvbrand.setText(brand);
         tvcollection.setText(collection);
-        tvcollection.setText(color);
+        tvcolor.setText(color);
         tvfinish.setText(finish);
 
         Button delete = (Button) findViewById(R.id.button_delete);
