@@ -114,7 +114,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_collection"
-        android:prompt="@string/color_prompt"
         android:spinnerMode="dialog"/>
 
 
@@ -132,7 +131,6 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner_color"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        android:prompt="@string/finish_prompt"
         android:spinnerMode="dialog"/>
 
 
