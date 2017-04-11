@@ -69,7 +69,7 @@ public class Details extends AppCompatActivity {
                 alertdelete.setMessage(R.string.alert_delete_message);
                 alertdelete.setNegativeButton(R.string.alert_button_cancel, new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Dialog canceled", Toast.LENGTH_SHORT).show();
+                        // User canceled dialog
                     }
                 });
                 alertdelete.setPositiveButton(R.string.button_delete_nailpolish, new DialogInterface.OnClickListener() {
@@ -90,6 +90,7 @@ public class Details extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentedit = new Intent(Details.this, Edit.class);
+                //todo: pass id to edit activity
                 startActivity(intentedit);
             }
         });

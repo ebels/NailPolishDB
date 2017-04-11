@@ -48,5 +48,9 @@ public class Edit extends AppCompatActivity {
         editTextID = (EditText) findViewById(R.id.editText_id);
         editTextBrand = (EditText) findViewById(R.id.editText_brand);
         editTextCollection = (EditText) findViewById(R.id.editText_collection);
+
+        //todo: get id from details activity
+        //todo: read other data from database
+        //todo: fill data in edittext fields
     }
 }
