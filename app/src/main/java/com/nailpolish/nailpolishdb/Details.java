@@ -67,12 +67,12 @@ public class Details extends AppCompatActivity {
                 //todo: delete message: "string" + "name" > currently not working
                 //alertdelete.setMessage(R.string.alert_delete_message + "\n" + name);
                 alertdelete.setMessage(R.string.alert_delete_message);
-                alertdelete.setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener(){
+                alertdelete.setNegativeButton(R.string.alert_button_cancel, new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(getApplicationContext(), "Dialog canceled", Toast.LENGTH_SHORT).show();
                     }
                 });
-                alertdelete.setPositiveButton(R.string.Button_Delete, new DialogInterface.OnClickListener() {
+                alertdelete.setPositiveButton(R.string.button_delete_nailpolish, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
                         Log.d(TAG, "delete button() calling method deleteNP ...");

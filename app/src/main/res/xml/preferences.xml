@@ -12,6 +12,6 @@
 
     <Preference
         android:summary=""
-        android:title="@string/settings_npcount" />
+        android:title="@string/preference_title_npcount" />
 
 </PreferenceScreen>

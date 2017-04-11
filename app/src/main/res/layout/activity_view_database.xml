@@ -17,13 +17,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/title_viewdb"
+        app:title="@string/toolbar_title_main"
         app:titleTextColor="@android:color/background_light"
         app:theme="@style/ToolbarColoredBackArrow" />
 
     <ListView
         android:id="@+id/listview1"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"

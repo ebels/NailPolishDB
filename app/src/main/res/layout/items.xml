@@ -23,38 +23,38 @@
         android:id="@+id/name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/thumbnail"
+        android:layout_toRightOf="@+id/thumbnail"
         android:paddingTop="5sp"
-        android:text="@string/text_Name"
+        android:text="@string/edittext_hint_name"
         android:textAllCaps="false"
         android:textColor="#343434"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/thumbnail"
-        android:layout_toEndOf="@+id/thumbnail" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/brand_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="5sp"
-        android:text="@string/text_Brand"
-        android:textColor="#343434"
-        android:textSize="15sp"
-        android:layout_below="@+id/name_tv"
         android:layout_alignLeft="@+id/name_tv"
-        android:layout_alignStart="@+id/name_tv" />
+        android:layout_alignStart="@+id/name_tv"
+        android:layout_below="@+id/name_tv"
+        android:paddingTop="5sp"
+        android:text="@string/edittext_hint_brand"
+        android:textColor="#343434"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/color_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="5dip"
-        android:text="@string/Color"
-        android:textColor="#343434"
-        android:textSize="15sp"
-        android:layout_below="@+id/brand_tv"
         android:layout_alignLeft="@+id/brand_tv"
-        android:layout_alignStart="@+id/brand_tv" />
+        android:layout_alignStart="@+id/brand_tv"
+        android:layout_below="@+id/brand_tv"
+        android:paddingTop="5dip"
+        android:text="@string/edittext_hint_color"
+        android:textColor="#343434"
+        android:textSize="15sp" />
 
 </RelativeLayout>

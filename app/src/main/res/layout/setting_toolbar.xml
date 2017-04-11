@@ -16,6 +16,7 @@
             android:minHeight="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:titleTextColor="@android:color/background_light"
+            app:title="@string/toolbar_title_settings"
             app:theme="@style/ToolbarColoredBackArrow"/>
         <ListView
             android:id="@android:id/list"

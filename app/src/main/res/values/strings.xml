@@ -1,29 +1,10 @@
 <resources>
-    <string name="app_name">NailPolishDB</string>
-    <string name="edit_message">Enter a message</string>
+    <string name="app_name">Nail Polish Database</string>
     <string name="button_viewdatabase">View Nail Polish Database</string>
-    <string name="image_mainactivity">Image Main Activity</string>
-    <string name="action_settings">Settings</string>
-    <string name="text_Brand">Brand:</string>
-    <string name="button_addnailpolish">Add new nailpolish</string>
-    <string name="text_Name">Name:</string>
-    <string name="text_ID">ID:</string>
-    <string name="text_collection">Collection:</string>
-    <string name="button_addpolish2db">Add nailpolish to database</string>
-    <string name="color_prompt">Choose a color</string>
-    <string name="finish_prompt">Choose a finish</string>
-    <string name="title_settings">Settings</string>
-    <string name="title_viewdb">Nail Polish Database</string>
-    <string name="heading_appdetails">App Details</string>
-    <string name="heading_dbdetails">Database Details</string>
+    <string name="button_addnailpolish">Add new Nail Polish</string>
+    <string name="button_addpolish2db">Add Nail Polish to database</string>
     <string name="toolbar_search">Search</string>
     <string name="switch_designcolor">Change Design Light/Dark</string>
-    <string name="settings_npcount">Nail Polishes in Database</string>
-    <string name="Details">Details</string>
-    <string name="Color">Color:</string>
-    <string name="Text_Finish">Finish:</string>
-    <string name="Button_Delete">Delete</string>
-    <string name="Button_Edit">Edit</string>
 
     <string-array name="npcolor_arrays">
         <item>Red</item>
@@ -48,7 +29,27 @@
         <item>Magnetic</item>
     </string-array>
     <string name="alert_delete_title">Delete record?</string>
-    <string name="text_cancel">Cancel</string>
     <string name="alert_delete_message">Really want to delete this record?</string>
-    <string name="activity_details_title">Nail Polish Details</string>
+    <string name="toolbar_title_main">Nail Polish Database</string>
+    <string name="toolbar_title_addnew">Add new Nail Polish</string>
+    <string name="edittext_hint_name">Name</string>
+    <string name="edittext_hint_id">ID</string>
+    <string name="edittext_hint_brand">Brand</string>
+    <string name="edittext_hint_collection">Collection</string>
+    <string name="toolbar_title_details">Nail Polish Details</string>
+    <string name="textview_color">Color:</string>
+    <string name="textview_finish">Finish:</string>
+    <string name="button_delete_nailpolish">Delete</string>
+    <string name="button_edit_nailpolish">Edit</string>
+    <string name="textview_id">ID:</string>
+    <string name="textview_brand">Brand:</string>
+    <string name="textview_collection">Collection:</string>
+    <string name="edittext_hint_color">Color</string>
+    <string name="edittext_hint_finish">Finish</string>
+    <string name="toolbar_title_edit">Edit Nail Polish</string>
+    <string name="button_save_edits">Save</string>
+    <string name="toolbar_title_settings">Settings</string>
+    <string name="menu_item_settings">Settings</string>
+    <string name="alert_button_cancel">Cancel</string>
+    <string name="preference_title_npcount">Nail Polishes in Database</string>
 </resources>
