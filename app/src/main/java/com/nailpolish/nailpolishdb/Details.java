@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +29,7 @@ public class Details extends AppCompatActivity {
         setSupportActionBar(Toolbar);
         ActionBar arrowup = getSupportActionBar(); // Get a support actionBar corresponding to this toolbar
         arrowup.setDisplayHomeAsUpEnabled(true); // Enable the "up" button
+        Toolbar.setTitle(R.string.activity_details_title);    //Set custom Toolbar title
 
         TextView tvname = (TextView) findViewById(R.id.textView_name);
         TextView tvnpid = (TextView) findViewById(R.id.textView_id);
@@ -48,9 +48,6 @@ public class Details extends AppCompatActivity {
         String finish = intent.getStringExtra("finish");
         final String _id = intent.getStringExtra("id");
         Log.d(TAG, "onCreate() Record ID :" + _id );
-
-        //Set custom Toolbar title
-        Toolbar.setTitle("Details " + name);
 
         //Set TextViews
         tvname.setText(name);
