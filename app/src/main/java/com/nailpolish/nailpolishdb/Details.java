@@ -1,17 +1,25 @@
 package com.nailpolish.nailpolishdb;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by ebelsheiser on 10.04.2017.
  */
 
 public class Details extends AppCompatActivity {
+    private static final String TAG = Details.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +38,16 @@ public class Details extends AppCompatActivity {
         TextView tvcolor = (TextView) findViewById(R.id.textView_color);
         TextView tvfinish = (TextView) findViewById(R.id.textView_finish);
 
-
+        Log.d(TAG, "onCreate() Get Intent()..." );
         Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
+        final String name = intent.getStringExtra("name");
         String npid = intent.getStringExtra("npid");
         String brand = intent.getStringExtra("brand");
         String collection = intent.getStringExtra("collection");
         String color = intent.getStringExtra("color");
         String finish = intent.getStringExtra("finish");
+        final String _id = intent.getStringExtra("id");
+        Log.d(TAG, "onCreate() Record ID :" + _id );
 
         //Set custom Toolbar title
         Toolbar.setTitle("Details " + name);
@@ -49,5 +59,34 @@ public class Details extends AppCompatActivity {
         tvcollection.setText(collection);
         tvcollection.setText(color);
         tvfinish.setText(finish);
+
+        Button delete = (Button) findViewById(R.id.button_delete);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alertdelete = new AlertDialog.Builder(Details.this);
+                alertdelete.setTitle(R.string.alert_delete_title);
+                //todo: delete message: "string" + "name" > currently not working
+                //alertdelete.setMessage(R.string.alert_delete_message + "\n" + name);
+                alertdelete.setMessage(R.string.alert_delete_message);
+                alertdelete.setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Dialog canceled", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alertdelete.setPositiveButton(R.string.Button_Delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
+                        Log.d(TAG, "delete button() calling method deleteNP ...");
+                        dbHelper.deleteNP(_id);
+                        Intent intent = new Intent(Details.this, ViewDatabase.class);
+                        startActivity(intent);
+                        Toast.makeText(getApplicationContext(), "Successfully deleted record", Toast.LENGTH_LONG).show();
+                    }
+                });
+                alertdelete.show();
+            }
+        });
     }
 }

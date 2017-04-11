@@ -22,6 +22,8 @@
     <string name="Details">Details</string>
     <string name="Color">Color:</string>
     <string name="Text_Finish">Finish:</string>
+    <string name="Button_Delete">Delete</string>
+    <string name="Button_Edit">Edit</string>
 
     <string-array name="npcolor_arrays">
         <item>Red</item>
@@ -45,4 +47,7 @@
         <item>Crackle</item>
         <item>Magnetic</item>
     </string-array>
+    <string name="alert_delete_title">Delete record?</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="alert_delete_message">Really want to delete this record?</string>
 </resources>

@@ -85,4 +85,13 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
         Log.d(TAG, "fetchallNPs() return cursor..." );
         return cursor;
     }
+
+    public void deleteNP(String id) {
+        Log.d(TAG, "deleteNP() make database writable...");
+        SQLiteDatabase db = this.getWritableDatabase();
+        Log.d(TAG, "deleteNP() exec SQL statement...");
+        db.delete(TABLE_NAME, "_id=?", new String[]{id});
+        Log.d(TAG, "deleteNP() close database connection...");
+        db.close();
+    }
 }

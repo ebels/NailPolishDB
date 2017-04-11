@@ -68,6 +68,7 @@ public class ViewDatabase extends AppCompatActivity {
                 String collection = item.getString(item.getColumnIndexOrThrow("collection"));
                 String color = item.getString(item.getColumnIndexOrThrow("color"));
                 String finish = item.getString(item.getColumnIndexOrThrow("finish"));
+                String _id = item.getString(item.getColumnIndexOrThrow("_id"));
 
                 Log.d(TAG, "onItemClick() Intent()..." );
                 Intent intent = new Intent(ViewDatabase.this, Details.class);
@@ -77,6 +78,7 @@ public class ViewDatabase extends AppCompatActivity {
                 intent.putExtra("collection", collection);
                 intent.putExtra("color", color);
                 intent.putExtra("finish", finish);
+                intent.putExtra("id", _id);
                 startActivity(intent);
             }
         });
