@@ -88,6 +88,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
             editTextID.setText("");
             editTextBrand.setText("");
             editTextCollection.setText("");
+            //Todo: Spinner color + finish clear text ; reset to blank
         }
     }
 }
