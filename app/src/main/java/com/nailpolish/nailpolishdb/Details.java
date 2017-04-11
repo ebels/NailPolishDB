@@ -29,7 +29,6 @@ public class Details extends AppCompatActivity {
         setSupportActionBar(Toolbar);
         ActionBar arrowup = getSupportActionBar(); // Get a support actionBar corresponding to this toolbar
         arrowup.setDisplayHomeAsUpEnabled(true); // Enable the "up" button
-        Toolbar.setTitle(R.string.activity_details_title);    //Set custom Toolbar title
 
         TextView tvname = (TextView) findViewById(R.id.textView_name);
         TextView tvnpid = (TextView) findViewById(R.id.textView_id);
@@ -39,7 +38,7 @@ public class Details extends AppCompatActivity {
         TextView tvfinish = (TextView) findViewById(R.id.textView_finish);
 
         Log.d(TAG, "onCreate() Get Intent()..." );
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         final String name = intent.getStringExtra("name");
         String npid = intent.getStringExtra("npid");
         String brand = intent.getStringExtra("brand");
@@ -58,6 +57,7 @@ public class Details extends AppCompatActivity {
         tvfinish.setText(finish);
 
         Button delete = (Button) findViewById(R.id.button_delete);
+        Button edit = (Button) findViewById(R.id.button_edit);
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +83,14 @@ public class Details extends AppCompatActivity {
                     }
                 });
                 alertdelete.show();
+            }
+        });
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentedit = new Intent(Details.this, Edit.class);
+                startActivity(intentedit);
             }
         });
     }
