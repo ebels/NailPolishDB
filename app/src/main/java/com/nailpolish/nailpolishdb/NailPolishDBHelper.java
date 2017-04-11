@@ -94,4 +94,10 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
         Log.d(TAG, "deleteNP() close database connection...");
         db.close();
     }
+
+    public Cursor fetchentireNP(String id) {
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE _id = " + id;
+        Cursor cursor = getReadableDatabase().rawQuery(query,null);
+        return cursor;
+    }
 }

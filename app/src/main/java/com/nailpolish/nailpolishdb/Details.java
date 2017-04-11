@@ -91,6 +91,7 @@ public class Details extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentedit = new Intent(Details.this, Edit.class);
                 //todo: pass id to edit activity
+                intentedit.putExtra("recordid", _id);
                 startActivity(intentedit);
             }
         });
