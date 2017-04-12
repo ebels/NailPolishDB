@@ -39,9 +39,7 @@ public class ViewDatabase extends AppCompatActivity {
         Cursor cursor = dbHelper.fetchAllNPs();
 
         // For the cursor adapter, specify which columns go into which views
-        //final String[] fromColumns = new String[]{dbHelper.COLUMN_NAME,dbHelper.COLUMN_NPID, dbHelper.COLUMN_BRAND,dbHelper.COLUMN_COLLECTION,dbHelper.COLUMN_COLOR,dbHelper.COLUMN_FINISH};
         final String[] fromColumns = new String[]{dbHelper.COLUMN_NAME, dbHelper.COLUMN_BRAND, dbHelper.COLUMN_COLOR};
-        //int[] toViews = {R.id.name_tv, R.id.id_tv, R.id.brand_tv, R.id.collection_tv, R.id.color_tv, R.id.finish_tv};
         int[] toViews = {R.id.name_tv, R.id.brand_tv, R.id.color_tv};
 
         Log.d(TAG, "onCreate() create Data Adapter..." );
@@ -61,7 +59,7 @@ public class ViewDatabase extends AppCompatActivity {
                 Log.d(TAG, "onItemClick() Cursor..." );
                 // Get nail polish name of selected item
                 Cursor item = (Cursor) dataAdapter.getItem(position);
-                Log.d(TAG, "onItemClick() Stings..." );
+                Log.d(TAG, "onItemClick() Strings..." );
                 String name = item.getString(item.getColumnIndexOrThrow("name"));
                 String npid = item.getString(item.getColumnIndexOrThrow("npid"));
                 String brand = item.getString(item.getColumnIndexOrThrow("brand"));
