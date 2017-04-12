@@ -83,12 +83,13 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
             Log.d(TAG, "onClick() Successfully created entry..." );
             Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_SHORT).show();
 
-            // making input field text blank
+            // making input field text + spinner blank
             editTextName.setText("");
             editTextID.setText("");
             editTextBrand.setText("");
             editTextCollection.setText("");
-            //Todo: Spinner color + finish clear text ; reset to blank
+            spinnercolor.setSelection(0);
+            spinnerfinish.setSelection(0);
         }
     }
 }
