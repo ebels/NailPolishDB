@@ -136,7 +136,7 @@
 
     <!-- BUTTON AD NAILPOLISH 2 DB -->
     <Button
-        android:id="@+id/button_addnp"
+        android:id="@+id/button_savechanges"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="297dp"
         android:layout_height="64dp"
