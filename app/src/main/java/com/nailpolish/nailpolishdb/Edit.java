@@ -22,7 +22,7 @@ public class Edit extends AppCompatActivity {
     public String id, name, npid, brand, collection, color, finish;
 
     private Spinner spinnercolor, spinnerfinish;
-    private ArrayAdapter adapter;
+    private ArrayAdapter adaptercolor, adapterfinish;
     private EditText editTextName, editTextID, editTextBrand,editTextCollection;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +35,15 @@ public class Edit extends AppCompatActivity {
 
         /* ------- SPINNER NAILPOLISH COLOR ------- */
         spinnercolor = (Spinner) findViewById(R.id.spinner_color);  // get the selected dropdown list value - Spinner element
-        adapter = ArrayAdapter.createFromResource(this, R.array.npcolor_arrays, android.R.layout.simple_spinner_item);  // Create an ArrayAdapter using the string array and a default spinner layout
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Specify the layout to use when the list of choices appears
-        spinnercolor.setAdapter(adapter);   // Apply the adapter to the spinner
+        adaptercolor = ArrayAdapter.createFromResource(this, R.array.npcolor_arrays, android.R.layout.simple_spinner_item);  // Create an ArrayAdapter using the string array and a default spinner layout
+        adaptercolor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Specify the layout to use when the list of choices appears
+        spinnercolor.setAdapter(adaptercolor);   // Apply the adapter to the spinner
 
         /* ------- SPINNER NAILPOLISH FINISH ------- */
         spinnerfinish = (Spinner) findViewById(R.id.spinner_finish);
-        adapter = ArrayAdapter.createFromResource(this, R.array.npfinish_arrays, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerfinish.setAdapter(adapter);
+        adapterfinish = ArrayAdapter.createFromResource(this, R.array.npfinish_arrays, android.R.layout.simple_spinner_item);
+        adapterfinish.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerfinish.setAdapter(adapterfinish);
 
         /* ------- EDITTEXT ------- */
         editTextName = (EditText) findViewById(R.id.editText_name);
@@ -84,6 +84,11 @@ public class Edit extends AppCompatActivity {
         editTextBrand.setText(brand);
         editTextCollection.setText(collection);
 
-        //todo: set text (color+finish) as selected spinner item
+        //set text (color+finish) as selected spinner item
+        int colorPosition = adaptercolor.getPosition(color);
+        spinnercolor.setSelection(colorPosition);
+
+        int finishPosition = adapterfinish.getPosition(finish);
+        spinnerfinish.setSelection(finishPosition);
     }
 }
