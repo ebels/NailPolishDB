@@ -42,30 +42,31 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
                     COLUMN_COLOR + " TEXT, " +
                     COLUMN_FINISH + " TEXT)";
 
+    public static final String SQL_DELETE_ENTRIES =
+            "DROP TABLE IF EXISTS " + TABLE_NAME;
+
     /* ------- CONSTRUCTOR ------- */
     public NailPolishDBHelper (Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
-    // Creating tables
     public void onCreate(SQLiteDatabase db) {
         Log.d(TAG, SQL_CREATE_ENTRIES);
-        db.execSQL(SQL_CREATE_ENTRIES);
+        db.execSQL(SQL_CREATE_ENTRIES); // Creating tables
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.d(TAG, "Upgrading database from version "+oldVersion + " to " +newVersion + ", which will destroy all data");
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);   // Drop older table if existed
+        db.execSQL(SQL_DELETE_ENTRIES);   // Drop older table if existed
         onCreate(db);   // Create tables again
     }
 
     public void insertNP (String name, String npid, String brand, String collection, String color, String finish) {
         Log.d(TAG, "insertNP() making database writable");
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(); // Gets the data repository in write mode
 
         Log.d(TAG, "insertNP() Content values");
-        ContentValues values = new ContentValues(6);
-
+        ContentValues values = new ContentValues(); // Create a new map of values, where column names are the keys
         values.put(COLUMN_NAME, name);
         values.put(COLUMN_NPID, npid);
         values.put(COLUMN_BRAND, brand);
@@ -74,14 +75,57 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
         values.put(COLUMN_FINISH, finish);
 
         Log.d(TAG, "insertNP() executing query, inserting entries");
-        getWritableDatabase().insert(TABLE_NAME, null, values);
+        db.insert(TABLE_NAME, null, values);    // Insert the new row
         db.close();
         Log.d(TAG, "insertNP() insert successfull, close database connection");
     }
 
+    public void updateNP (String id, String name, String npid, String brand, String collection, String color, String finish) {
+        Log.d(TAG, "updateNP() making database writable");
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Log.d(TAG, "updateNP() insert new values...");
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, name);
+        values.put(COLUMN_NPID, npid);
+        values.put(COLUMN_BRAND, brand);
+        values.put(COLUMN_COLLECTION, collection);
+        values.put(COLUMN_COLOR, color);
+        values.put(COLUMN_FINISH, finish);
+
+        String selection = COLUMN_ID + " LIKE ?";   // Which row to update, based on id
+        String[] selectionArgs = {id};              //specify arguments
+
+        Log.d(TAG, "updateNP() executing query, inserting entries");
+        db.update(TABLE_NAME, values, selection, selectionArgs);
+        db.close();
+        Log.d(TAG, "updateNP() update successfull, close database connection");
+    }
+
     public Cursor fetchAllNPs() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Define a projection that specifies which columns from the database  will actually be used after this query
+        String[] projection = {
+                COLUMN_ID,
+                COLUMN_NAME,
+                COLUMN_NPID,
+                COLUMN_BRAND,
+                COLUMN_COLLECTION,
+                COLUMN_COLOR,
+                COLUMN_FINISH
+        };
+
         Log.d(TAG, "fetchallNPs() Cursor..." );
-        Cursor cursor = getReadableDatabase().query(TABLE_NAME, new String[] {COLUMN_ID, COLUMN_NAME, COLUMN_NPID, COLUMN_BRAND, COLUMN_COLLECTION, COLUMN_COLOR, COLUMN_FINISH}, null, null, null, null, null);
+        Cursor cursor = db.query(
+                TABLE_NAME, // Table name
+                projection, // columns to return
+                null,       // filter results (columns for the WHERE clause ...)
+                null,       // filter results (values for the WHERE clause ...)
+                null,       // goup the rows
+                null,       // filter by groups
+                null        // sort order
+                );
         Log.d(TAG, "fetchallNPs() return cursor..." );
         return cursor;
     }
@@ -89,15 +133,48 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
     public void deleteNP(String id) {
         Log.d(TAG, "deleteNP() make database writable...");
         SQLiteDatabase db = this.getWritableDatabase();
+
+        String selection = COLUMN_ID + " LIKE ?";   // Which row to update, based on id
+        String[] selectionArgs = {id};              //specify arguments
+
         Log.d(TAG, "deleteNP() exec SQL statement...");
-        db.delete(TABLE_NAME, "_id=?", new String[]{id});
+        db.delete(TABLE_NAME, selection, selectionArgs);
         Log.d(TAG, "deleteNP() close database connection...");
         db.close();
     }
 
     public Cursor fetchentireNP(String id) {
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE _id = " + id;
-        Cursor cursor = getReadableDatabase().rawQuery(query,null);
+        //String query = "SELECT * FROM " + TABLE_NAME + " WHERE _id = " + id;
+        //Cursor cursor = getReadableDatabase().rawQuery(query,null);
+        //return cursor;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Define a projection that specifies which columns from the database  will actually be used after this query
+        String[] projection = {
+                COLUMN_NAME,
+                COLUMN_NPID,
+                COLUMN_BRAND,
+                COLUMN_COLLECTION,
+                COLUMN_COLOR,
+                COLUMN_FINISH
+        };
+
+        // Filter results WHERE "_id" = 'id'
+        String selection = COLUMN_ID + " = ?";
+        String[] selectionArgs = {id};
+
+        Log.d(TAG, "fetchentireNPs() Cursor..." );
+        Cursor cursor = db.query(
+                TABLE_NAME,     // Table name
+                projection,     // columns to return
+                selection,      // filter results (columns for the WHERE clause ...)
+                selectionArgs,  // filter results (values for the WHERE clause ...)
+                null,           // goup the rows
+                null,           // filter by groups
+                null            // sort order
+        );
+        Log.d(TAG, "fetchentireNPs() return cursor..." );
         return cursor;
     }
 }
