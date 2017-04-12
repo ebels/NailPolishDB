@@ -33,8 +33,9 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
         setSupportActionBar(Toolbar);
         // Get a support actionBar corresponding to this toolbar
         ActionBar arrowup = getSupportActionBar();
-        // Enable the "up" button
-        arrowup.setDisplayHomeAsUpEnabled(true);
+        this.getSupportActionBar().setHomeAsUpIndicator(android.R.drawable.ic_menu_close_clear_cancel);
+        arrowup.setDisplayHomeAsUpEnabled(true);    // Enable the "up" button
+        // todo: add save button to toolbar?
 
         /* ------- SPINNER NAILPOLISH COLOR ------- */
         // get the selected dropdown list value - Spinner element
@@ -72,6 +73,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
         String color = spinnercolor.getSelectedItem().toString();
         String finish = spinnerfinish.getSelectedItem().toString();
 
+        //todo: check if color + finish is selected
         // Check if fields are empty then display message, else insert entries in database
         if (name.matches("") && npid.matches("") && brand.matches("") && collection.matches(""))  {
             Toast.makeText(this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
