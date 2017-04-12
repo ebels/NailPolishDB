@@ -21,12 +21,13 @@
         app:titleTextColor="@android:color/background_light"
         app:theme="@style/ToolbarColoredBackArrow" />
 
-    <!-- todo: listview doesnt show last item -->
+    <!-- todo: listview doesnt show last item; Linear-layout?-->
     <ListView
         android:id="@+id/listview1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="?attr/actionBarSize"
+        android:paddingBottom="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
