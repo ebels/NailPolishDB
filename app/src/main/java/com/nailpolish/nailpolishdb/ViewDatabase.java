@@ -53,7 +53,6 @@ public class ViewDatabase extends AppCompatActivity {
         final ListView listView = (ListView) findViewById(R.id.listview1);
         //Assign adpter to ListView
         listView.setAdapter(dataAdapter);
-        //todo: listview not showing last view items
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
