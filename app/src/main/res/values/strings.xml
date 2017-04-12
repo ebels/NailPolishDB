@@ -7,6 +7,7 @@
     <string name="switch_designcolor">Change Design Light/Dark</string>
 
     <string-array name="npcolor_arrays">
+        <item>Select a color</item>
         <item>Red</item>
         <item>Blue</item>
         <item>Yellow</item>
@@ -17,6 +18,7 @@
     </string-array>
 
     <string-array name="npfinish_arrays">
+        <item>Select a finish</item>
         <item>Matte</item>
         <item>Gloss</item>
         <item>Cream</item>
