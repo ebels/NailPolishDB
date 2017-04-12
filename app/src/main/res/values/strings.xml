@@ -30,8 +30,8 @@
         <item>Crackle</item>
         <item>Magnetic</item>
     </string-array>
-    <string name="alert_delete_title">Delete record?</string>
-    <string name="alert_delete_message">Really want to delete this record?</string>
+    <string name="alert_delete_title">Delete Nail Polish?</string>
+    <string name="alert_delete_message">All data of this Nail Polish will be lost!</string>
     <string name="toolbar_title_main">Nail Polish Database</string>
     <string name="toolbar_title_addnew">Add new Nail Polish</string>
     <string name="edittext_hint_name">Name</string>
