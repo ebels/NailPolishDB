@@ -72,26 +72,36 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
         String collection = editTextCollection.getText().toString();
         String color = spinnercolor.getSelectedItem().toString();
         String finish = spinnerfinish.getSelectedItem().toString();
+        String selectedcolor = "Select a color";
+        String selectedfinish = "Select a finish";
 
-        //todo: check if color + finish is selected
         // Check if fields are empty then display message, else insert entries in database
-        if (name.matches("") && npid.matches("") && brand.matches("") && collection.matches(""))  {
+        if (name.matches("") && npid.matches("") && brand.matches("") && collection.matches("")) {
             Toast.makeText(this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
         } else {
-            // Insert Data to database
-            NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
-            Log.d(TAG, "onClick() Write data in database..." );
-            DbHelper.insertNP(name,npid,brand,collection,color,finish);
-            Log.d(TAG, "onClick() Successfully created entry..." );
-            Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_SHORT).show();
 
-            // making input field text + spinner blank
-            editTextName.setText("");
-            editTextID.setText("");
-            editTextBrand.setText("");
-            editTextCollection.setText("");
-            spinnercolor.setSelection(0);
-            spinnerfinish.setSelection(0);
+            if (spinnercolor.getSelectedItem().toString().equals(selectedcolor)) {  //check if color + finish is selected
+                Toast.makeText(this, "Please select a color!", Toast.LENGTH_SHORT).show();
+            } else {
+                if (spinnerfinish.getSelectedItem().toString().equals(selectedfinish)) {    //check if color + finish is selected
+                    Toast.makeText(this, "Please select a finish!", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Insert Data to database
+                    NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
+                    Log.d(TAG, "onClick() Write data in database..." );
+                    DbHelper.insertNP(name,npid,brand,collection,color,finish);
+                    Log.d(TAG, "onClick() Successfully created entry..." );
+                    Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_SHORT).show();
+
+                    // making input field text + spinner blank
+                    editTextName.setText("");
+                    editTextID.setText("");
+                    editTextBrand.setText("");
+                    editTextCollection.setText("");
+                    spinnercolor.setSelection(0);
+                    spinnerfinish.setSelection(0);
+                }
+            }
         }
     }
 }
