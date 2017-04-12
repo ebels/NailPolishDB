@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class AddNew extends AppCompatActivity implements View.OnClickListener {
 
     private Spinner spinnercolor, spinnerfinish;
-    private ArrayAdapter adapter;
+    private ArrayAdapter adaptercolor, adapterfinish;
     private EditText editTextName, editTextID, editTextBrand,editTextCollection;
     private Button btnAdd;
     private static final String TAG = AddNew.class.getSimpleName();
@@ -40,17 +40,17 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
         // get the selected dropdown list value - Spinner element
         spinnercolor = (Spinner) findViewById(R.id.spinner_color);
         // Create an ArrayAdapter using the string array and a default spinner layout
-        adapter = ArrayAdapter.createFromResource(this, R.array.npcolor_arrays, android.R.layout.simple_spinner_item);
+        adaptercolor = ArrayAdapter.createFromResource(this, R.array.npcolor_arrays, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adaptercolor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-        spinnercolor.setAdapter(adapter);
+        spinnercolor.setAdapter(adaptercolor);
 
         /* ------- SPINNER NAILPOLISH FINISH ------- */
         spinnerfinish = (Spinner) findViewById(R.id.spinner_finish);
-        adapter = ArrayAdapter.createFromResource(this, R.array.npfinish_arrays, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerfinish.setAdapter(adapter);
+        adapterfinish = ArrayAdapter.createFromResource(this, R.array.npfinish_arrays, android.R.layout.simple_spinner_item);
+        adapterfinish.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerfinish.setAdapter(adapterfinish);
 
         /* ------- EDITTEXT ------- */
         editTextName = (EditText) findViewById(R.id.editText_name);
