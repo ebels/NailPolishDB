@@ -61,7 +61,7 @@ public class Edit extends AppCompatActivity implements View.OnClickListener {
         id = intent.getStringExtra("recordid");
         Log.d(TAG, "get it from details.activity() ID= " + id);
 
-        //// TODO: method in dbhelper class? needed in details.java to set name from database to textview
+        // TODO: method in dbhelper class? needed to set name from database to edittext; needed in details class
         //read data from database
         Log.d(TAG, "Call method fetchentireNP() ...");
         NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
@@ -123,7 +123,7 @@ public class Edit extends AppCompatActivity implements View.OnClickListener {
             Log.d(TAG, "onClick() Successfully updated entry...");
             Toast.makeText(getApplicationContext(), "Successfully updated entry", Toast.LENGTH_SHORT).show();
 
-            //todo: pass id to get detail view
+            //todo: pass id to get detail view of saved nail polish?
             Intent intent = new Intent(Edit.this, Details.class);
             startActivity(intent);
         }

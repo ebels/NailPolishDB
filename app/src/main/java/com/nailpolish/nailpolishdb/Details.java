@@ -39,7 +39,7 @@ public class Details extends AppCompatActivity {
         TextView tvcolor = (TextView) findViewById(R.id.textView_color);
         TextView tvfinish = (TextView) findViewById(R.id.textView_finish);
 
-        //todo: fetch nail polish details form database identified by _id (Edit.java) method in dbhelper class?
+        //todo: fetch nail polish details form database identified by _id (like edit.java) and set data to textview instead of passing all data through activity intent? method in dbhelper class? needed in edit.java
         Log.d(TAG, "onCreate() Get Intent()..." );
         final Intent intent = getIntent();
         final String name = intent.getStringExtra("name");
