@@ -7,7 +7,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -16,14 +18,15 @@ import android.widget.Toast;
  * Created by ebelsheiser on 11.04.2017.
  */
 
-public class Edit extends AppCompatActivity {
+public class Edit extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = Edit.class.getSimpleName();
     public String id, name, npid, brand, collection, color, finish;
 
     private Spinner spinnercolor, spinnerfinish;
     private ArrayAdapter adaptercolor, adapterfinish;
-    private EditText editTextName, editTextID, editTextBrand,editTextCollection;
+    private EditText editTextName, editTextID, editTextBrand, editTextCollection;
+    private Button btnsave;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +34,9 @@ public class Edit extends AppCompatActivity {
         Toolbar Toolbar = (Toolbar) findViewById(R.id.toolbar); /** sets the toolbar as the app bar for the activity */
         setSupportActionBar(Toolbar);
         ActionBar arrowup = getSupportActionBar(); // Get a support actionBar corresponding to this toolbar
+        this.getSupportActionBar().setHomeAsUpIndicator(android.R.drawable.ic_menu_close_clear_cancel);
         arrowup.setDisplayHomeAsUpEnabled(true); // Enable the "up" button
+        //todo: save button in action bar
 
         /* ------- SPINNER NAILPOLISH COLOR ------- */
         spinnercolor = (Spinner) findViewById(R.id.spinner_color);  // get the selected dropdown list value - Spinner element
@@ -54,29 +59,30 @@ public class Edit extends AppCompatActivity {
         //get id from details activity
         Intent intent = getIntent();
         id = intent.getStringExtra("recordid");
-        Log.d(TAG, "get it from details.activity() ID= "+id);
+        Log.d(TAG, "get it from details.activity() ID= " + id);
 
+        //// TODO: method in dbhelper class? needed in details.java to set name from database to textview
         //read data from database
-        Log.d(TAG, "Call method fetchentireNP() ..." );
+        Log.d(TAG, "Call method fetchentireNP() ...");
         NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
         Cursor cursor = dbHelper.fetchentireNP(id);
 
         cursor.moveToFirst();
-        if (cursor.getCount()!=0) {
-            if (cursor.moveToFirst()){
+        if (cursor.getCount() != 0) {
+            if (cursor.moveToFirst()) {
                 do {
-                    Log.d(TAG, "get String from cursor() ..." );
+                    Log.d(TAG, "get String from cursor() ...");
                     name = cursor.getString(cursor.getColumnIndex("name"));
                     npid = cursor.getString(cursor.getColumnIndex("npid"));
                     brand = cursor.getString(cursor.getColumnIndex("brand"));
                     collection = cursor.getString(cursor.getColumnIndex("collection"));
                     color = cursor.getString(cursor.getColumnIndex("color"));
                     finish = cursor.getString(cursor.getColumnIndex("finish"));
-                }while (cursor.moveToNext());
+                } while (cursor.moveToNext());
             }
         }
         cursor.close();
-        Log.d(TAG, "fetched from db:" +id + name + npid + brand + collection + color + finish);
+        Log.d(TAG, "fetched from db:" + id + name + npid + brand + collection + color + finish);
 
         //fill data in edittext fields
         editTextName.setText(name);
@@ -90,5 +96,36 @@ public class Edit extends AppCompatActivity {
 
         int finishPosition = adapterfinish.getPosition(finish);
         spinnerfinish.setSelection(finishPosition);
+
+        /* ------- BUTTONS ------- */
+        btnsave = (Button) findViewById(R.id.button_savechanges);
+        btnsave.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        String name = editTextName.getText().toString();
+        String npid = editTextID.getText().toString();
+        String brand = editTextBrand.getText().toString();
+        String collection = editTextCollection.getText().toString();
+        String color = spinnercolor.getSelectedItem().toString();
+        String finish = spinnerfinish.getSelectedItem().toString();
+
+        //todo: check if color + finish is selected
+        // Check if fields are empty then display message, else insert entries in database
+        if (name.matches("") && npid.matches("") && brand.matches("") && collection.matches("")) {
+            Toast.makeText(this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
+        } else {
+            // Insert Data to database
+            NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
+            Log.d(TAG, "onClick() Write data in database...");
+            DbHelper.updateNP(id, name, npid, brand, collection, color, finish);
+            Log.d(TAG, "onClick() Successfully updated entry...");
+            Toast.makeText(getApplicationContext(), "Successfully updated entry", Toast.LENGTH_SHORT).show();
+
+            //todo: pass id to get detail view
+            Intent intent = new Intent(Edit.this, Details.class);
+            startActivity(intent);
+        }
     }
 }
