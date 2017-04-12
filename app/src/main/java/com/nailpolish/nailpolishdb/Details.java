@@ -64,7 +64,7 @@ public class Details extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder alertdelete = new AlertDialog.Builder(Details.this);
                 alertdelete.setTitle(R.string.alert_delete_title);
-                //todo: delete message: "string" + "name" > currently not working
+                //todo: adjust text of delete message: "string" + "name" > currently not working
                 //alertdelete.setMessage(R.string.alert_delete_message + "\n" + name);
                 alertdelete.setMessage(R.string.alert_delete_message);
                 alertdelete.setNegativeButton(R.string.alert_button_cancel, new DialogInterface.OnClickListener(){
@@ -90,8 +90,7 @@ public class Details extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentedit = new Intent(Details.this, Edit.class);
-                //todo: pass id to edit activity
-                intentedit.putExtra("recordid", _id);
+                intentedit.putExtra("recordid", _id);   //pass id to edit activity
                 startActivity(intentedit);
             }
         });

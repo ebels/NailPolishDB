@@ -116,7 +116,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_collection"
         android:spinnerMode="dialog"/>
 
-
+    <!-- todo: adjust style of spinner -->
     <!-- FINISH -->
     <Spinner
         android:id="@+id/spinner_finish"
