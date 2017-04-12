@@ -2,6 +2,7 @@ package com.nailpolish.nailpolishdb;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 public class Details extends AppCompatActivity {
     private static final String TAG = Details.class.getSimpleName();
+    public String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class Details extends AppCompatActivity {
         TextView tvcolor = (TextView) findViewById(R.id.textView_color);
         TextView tvfinish = (TextView) findViewById(R.id.textView_finish);
 
+        //todo: fetch nail polish details form database identified by _id (Edit.java) method in dbhelper class?
         Log.d(TAG, "onCreate() Get Intent()..." );
         final Intent intent = getIntent();
         final String name = intent.getStringExtra("name");
@@ -64,8 +67,6 @@ public class Details extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder alertdelete = new AlertDialog.Builder(Details.this);
                 alertdelete.setTitle(R.string.alert_delete_title);
-                //todo: adjust text of delete message: "string" + "name" > currently not working
-                //alertdelete.setMessage(R.string.alert_delete_message + "\n" + name);
                 alertdelete.setMessage(R.string.alert_delete_message);
                 alertdelete.setNegativeButton(R.string.alert_button_cancel, new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int which) {
