@@ -28,24 +28,18 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_add_new);
 
         /* ------- TOOLBAR ------- */
-        /** sets the toolbar as the app bar for the activity */
-        Toolbar Toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar Toolbar = (Toolbar) findViewById(R.id.toolbar); /** sets the toolbar as the app bar for the activity */
         setSupportActionBar(Toolbar);
-        // Get a support actionBar corresponding to this toolbar
-        ActionBar arrowup = getSupportActionBar();
+        ActionBar arrowup = getSupportActionBar();  // Get a support actionBar corresponding to this toolbar
         this.getSupportActionBar().setHomeAsUpIndicator(android.R.drawable.ic_menu_close_clear_cancel);
         arrowup.setDisplayHomeAsUpEnabled(true);    // Enable the "up" button
         // todo: add save button to toolbar?
 
         /* ------- SPINNER NAILPOLISH COLOR ------- */
-        // get the selected dropdown list value - Spinner element
-        spinnercolor = (Spinner) findViewById(R.id.spinner_color);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        adaptercolor = ArrayAdapter.createFromResource(this, R.array.npcolor_arrays, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adaptercolor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinnercolor.setAdapter(adaptercolor);
+        spinnercolor = (Spinner) findViewById(R.id.spinner_color);  // get the selected dropdown list value - Spinner element
+        adaptercolor = ArrayAdapter.createFromResource(this, R.array.npcolor_arrays, android.R.layout.simple_spinner_item); // Create an ArrayAdapter using the string array and a default spinner layout
+        adaptercolor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);    // Specify the layout to use when the list of choices appears
+        spinnercolor.setAdapter(adaptercolor);  // Apply the adapter to the spinner
 
         /* ------- SPINNER NAILPOLISH FINISH ------- */
         spinnerfinish = (Spinner) findViewById(R.id.spinner_finish);

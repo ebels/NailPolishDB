@@ -26,8 +26,7 @@ public class Details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        /** sets the toolbar as the app bar for the activity */
-        Toolbar Toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar Toolbar = (Toolbar) findViewById(R.id.toolbar); /** sets the toolbar as the app bar for the activity */
         setSupportActionBar(Toolbar);
         ActionBar arrowup = getSupportActionBar(); // Get a support actionBar corresponding to this toolbar
         arrowup.setDisplayHomeAsUpEnabled(true); // Enable the "up" button

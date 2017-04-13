@@ -19,10 +19,6 @@ import static com.nailpolish.nailpolishdb.R.id.toolbar;
 
 public class Settings extends PreferenceActivity {
 
-    private static final String TAG = Settings.class.getSimpleName();
-
-    private AppCompatDelegate mDelegate;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

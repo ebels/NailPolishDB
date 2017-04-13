@@ -26,13 +26,10 @@ public class ViewDatabase extends AppCompatActivity {
         Log.d(TAG, "onCreate() start Activity..." );
 
         /* ------- TOOLBAR ------- */
-        /** sets the toolbar as the app bar for the activity */
-        final Toolbar Toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar Toolbar = (Toolbar) findViewById(R.id.toolbar);   /** sets the toolbar as the app bar for the activity */
         setSupportActionBar(Toolbar);
-        // Get a support actionBar corresponding to this toolbar
-        ActionBar arrowup = getSupportActionBar();
-        // Enable the "up" button
-        arrowup.setDisplayHomeAsUpEnabled(true);
+        ActionBar arrowup = getSupportActionBar();  // Get a support actionBar corresponding to this toolbar
+        arrowup.setDisplayHomeAsUpEnabled(true);    // Enable the "up" button
 
         /* ------- SHOW ITEMS FROM DB IN LISTVIEW ------- */
         Log.d(TAG, "onCreate() create cursor fetchallNPs()..." );
@@ -45,23 +42,20 @@ public class ViewDatabase extends AppCompatActivity {
         int[] toViews = {R.id.name_tv, R.id.brand_tv, R.id.color_tv};
 
         Log.d(TAG, "onCreate() create Data Adapter..." );
-        // Create an empty adapter we will use to display the loaded data.
-        // We pass null for the cursor, then update it in onLoadFinished()
+        // Create an adapter that will be used to display the loaded data.
         dataAdapter = new SimpleCursorAdapter(this,
                 R.layout.items, cursor,
-                fromColumns, toViews, 0);
+                fromColumns, toViews, 0);   // pass null for the cursor, then update it in onLoadFinished()
 
         Log.d(TAG, "onCreate() Assign ListView to Adapter..." );
         listView = (ListView) findViewById(R.id.listview1);
-        //Assign adpter to ListView
-        listView.setAdapter(dataAdapter);
+        listView.setAdapter(dataAdapter);   //Assign adpter to ListView
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG, "onItemClick() Cursor..." );
                 // Get nail polish id of selected item
                 Cursor item = (Cursor) dataAdapter.getItem(position);
-                Log.d(TAG, "onItemClick() Strings..." );
                 String _id = item.getString(item.getColumnIndexOrThrow("_id"));
 
                 Log.d(TAG, "onItemClick() Intent()..." );
