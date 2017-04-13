@@ -57,25 +57,13 @@ public class ViewDatabase extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG, "onItemClick() Cursor..." );
-                // Get nail polish name of selected item
+                // Get nail polish id of selected item
                 Cursor item = (Cursor) dataAdapter.getItem(position);
                 Log.d(TAG, "onItemClick() Strings..." );
-                String name = item.getString(item.getColumnIndexOrThrow("name"));
-                String npid = item.getString(item.getColumnIndexOrThrow("npid"));
-                String brand = item.getString(item.getColumnIndexOrThrow("brand"));
-                String collection = item.getString(item.getColumnIndexOrThrow("collection"));
-                String color = item.getString(item.getColumnIndexOrThrow("color"));
-                String finish = item.getString(item.getColumnIndexOrThrow("finish"));
                 String _id = item.getString(item.getColumnIndexOrThrow("_id"));
 
                 Log.d(TAG, "onItemClick() Intent()..." );
                 Intent intent = new Intent(ViewDatabase.this, Details.class);
-                intent.putExtra("name", name); //provide nail polish name to details activity
-                intent.putExtra("npid", npid);
-                intent.putExtra("brand", brand);
-                intent.putExtra("collection", collection);
-                intent.putExtra("color", color);
-                intent.putExtra("finish", finish);
                 intent.putExtra("id", _id);
                 startActivity(intent);
             }
