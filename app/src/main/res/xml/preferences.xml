@@ -6,13 +6,11 @@
 
     ]]>
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="switch_preference_1"
-        android:title="@string/switch_designcolor" />
-
     <Preference
-        android:summary=""
-        android:title="@string/preference_title_npcount" />
+        android:title="@string/preference_title_npcount"
+        android:key="nailpolish_count"
+        android:summary="" />
+
+    <!-- todo: Choose: View Information in ListView -->
 
 </PreferenceScreen>

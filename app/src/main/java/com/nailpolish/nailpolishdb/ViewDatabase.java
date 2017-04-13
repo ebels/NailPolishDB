@@ -11,11 +11,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 public class ViewDatabase extends AppCompatActivity {
 
     private static final String TAG = ViewDatabase.class.getSimpleName();
     private SimpleCursorAdapter dataAdapter;    // This is the Adapter being used to display the list's data
+    public ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class ViewDatabase extends AppCompatActivity {
                 fromColumns, toViews, 0);
 
         Log.d(TAG, "onCreate() Assign ListView to Adapter..." );
-        final ListView listView = (ListView) findViewById(R.id.listview1);
+        listView = (ListView) findViewById(R.id.listview1);
         //Assign adpter to ListView
         listView.setAdapter(dataAdapter);
 
@@ -68,5 +70,12 @@ public class ViewDatabase extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Toast.makeText(getApplicationContext(), "Total number of entries: " + listView.getAdapter().getCount(), Toast.LENGTH_SHORT).show();
+    }
+    //todo: pass count of nailpolishes to settings.java
+    public int countNPs() {
+        int count = listView.getAdapter().getCount();
+        return count;
     }
 }
