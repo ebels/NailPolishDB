@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 public class Details extends AppCompatActivity {
     private static final String TAG = Details.class.getSimpleName();
-    public String name;
+    public String id, name, npid, brand, collection, color, finish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +39,33 @@ public class Details extends AppCompatActivity {
         TextView tvcolor = (TextView) findViewById(R.id.textView_color);
         TextView tvfinish = (TextView) findViewById(R.id.textView_finish);
 
-        //todo: fetch nail polish details form database identified by _id (like edit.java) and set data to textview instead of passing all data through activity intent? method in dbhelper class? needed in edit.java
-        Log.d(TAG, "onCreate() Get Intent()..." );
+        //todo: method in dbhelper class? needet to set name from database to textview; also needed in edit.java
+        Log.d(TAG, "onCreate() Get Intent from ViewDatabase class..." );
         final Intent intent = getIntent();
-        final String name = intent.getStringExtra("name");
-        String npid = intent.getStringExtra("npid");
-        String brand = intent.getStringExtra("brand");
-        String collection = intent.getStringExtra("collection");
-        String color = intent.getStringExtra("color");
-        String finish = intent.getStringExtra("finish");
         final String _id = intent.getStringExtra("id");
         Log.d(TAG, "onCreate() Record ID :" + _id );
+
+        //get nail polish data from database
+        Log.d(TAG, "Call method fetchentireNP() ...");
+        NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
+        Cursor cursor = dbHelper.fetchentireNP(_id);
+
+        cursor.moveToFirst();
+        if (cursor.getCount() != 0) {
+            if (cursor.moveToFirst()) {
+                do {
+                    Log.d(TAG, "get String from cursor() ...");
+                    name = cursor.getString(cursor.getColumnIndex("name"));
+                    npid = cursor.getString(cursor.getColumnIndex("npid"));
+                    brand = cursor.getString(cursor.getColumnIndex("brand"));
+                    collection = cursor.getString(cursor.getColumnIndex("collection"));
+                    color = cursor.getString(cursor.getColumnIndex("color"));
+                    finish = cursor.getString(cursor.getColumnIndex("finish"));
+                } while (cursor.moveToNext());
+            }
+        }
+        cursor.close();
+        Log.d(TAG, "fetched from db:" + _id + name + npid + brand + collection + color + finish);
 
         //Set TextViews
         tvname.setText(name);
