@@ -61,7 +61,7 @@ public class Edit extends AppCompatActivity implements View.OnClickListener {
         id = intent.getStringExtra("recordid");
         Log.d(TAG, "get it from details.activity() ID= " + id);
 
-        // TODO: method in dbhelper class? needed to set name from database to edittext; needed in details class
+        // TODO: method in dbhelper class? needed to set name from database to edittext; also needed in details class
         //read data from database
         Log.d(TAG, "Call method fetchentireNP() ...");
         NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
@@ -97,7 +97,6 @@ public class Edit extends AppCompatActivity implements View.OnClickListener {
         int finishPosition = adapterfinish.getPosition(finish);
         spinnerfinish.setSelection(finishPosition);
 
-        /* ------- BUTTONS ------- */
         btnsave = (Button) findViewById(R.id.button_savechanges);
         btnsave.setOnClickListener(this);
     }
@@ -110,22 +109,33 @@ public class Edit extends AppCompatActivity implements View.OnClickListener {
         String collection = editTextCollection.getText().toString();
         String color = spinnercolor.getSelectedItem().toString();
         String finish = spinnerfinish.getSelectedItem().toString();
+        String selectedcolor = "Select a color";
+        String selectedfinish = "Select a finish";
 
-        //todo: check if color + finish is selected
         // Check if fields are empty then display message, else insert entries in database
         if (name.matches("") && npid.matches("") && brand.matches("") && collection.matches("")) {
             Toast.makeText(this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
         } else {
-            // Insert Data to database
-            NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
-            Log.d(TAG, "onClick() Write data in database...");
-            DbHelper.updateNP(id, name, npid, brand, collection, color, finish);
-            Log.d(TAG, "onClick() Successfully updated entry...");
-            Toast.makeText(getApplicationContext(), "Successfully updated entry", Toast.LENGTH_SHORT).show();
 
-            //todo: pass id to get detail view of saved nail polish?
-            Intent intent = new Intent(Edit.this, Details.class);
-            startActivity(intent);
+            if (spinnercolor.getSelectedItem().toString().equals(selectedcolor)) {  //check if color + finish is selected
+                Toast.makeText(this, "Please select a color!", Toast.LENGTH_SHORT).show();
+            } else {
+                if (spinnerfinish.getSelectedItem().toString().equals(selectedfinish)) {    //check if color + finish is selected
+                    Toast.makeText(this, "Please select a finish!", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Insert Data to database
+                    NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
+                    Log.d(TAG, "onClick() Write data in database..." );
+                    DbHelper.updateNP(id,name,npid,brand,collection,color,finish);
+                    Log.d(TAG, "onClick() Successfully updated entry..." );
+                    Toast.makeText(getApplicationContext(), "Successfully updated entry", Toast.LENGTH_SHORT).show();
+
+                    //pass id to get detail view of saved nail polish
+                    Intent intent = new Intent(Edit.this, Details.class);
+                    intent.putExtra("id", id);
+                    startActivity(intent);
+                }
+            }
         }
     }
 }
