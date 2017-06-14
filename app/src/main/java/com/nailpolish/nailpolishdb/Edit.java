@@ -36,7 +36,6 @@ public class Edit extends AppCompatActivity implements View.OnClickListener {
         ActionBar arrowup = getSupportActionBar(); // Get a support actionBar corresponding to this toolbar
         this.getSupportActionBar().setHomeAsUpIndicator(android.R.drawable.ic_menu_close_clear_cancel);
         arrowup.setDisplayHomeAsUpEnabled(true); // Enable the "up" button
-        //todo: save button in action bar
 
         /* ------- SPINNER NAILPOLISH COLOR ------- */
         spinnercolor = (Spinner) findViewById(R.id.spinner_color);  // get the selected dropdown list value - Spinner element

@@ -38,7 +38,7 @@ public class Details extends AppCompatActivity {
         TextView tvcolor = (TextView) findViewById(R.id.textView_color);
         TextView tvfinish = (TextView) findViewById(R.id.textView_finish);
 
-        //todo: method in dbhelper class? needet to set name from database to textview; also needed in edit.java
+        //todo: method in dbhelper class? needed to set name from database to textview; also needed in edit.java
         Log.d(TAG, "onCreate() Get Intent from ViewDatabase class..." );
         final Intent intent = getIntent();
         final String _id = intent.getStringExtra("id");
