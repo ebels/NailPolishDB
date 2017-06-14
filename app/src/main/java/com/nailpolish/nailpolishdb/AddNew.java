@@ -1,5 +1,6 @@
 package com.nailpolish.nailpolishdb;
 
+import android.content.Intent;
 import android.nfc.Tag;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +34,6 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
         ActionBar arrowup = getSupportActionBar();  // Get a support actionBar corresponding to this toolbar
         this.getSupportActionBar().setHomeAsUpIndicator(android.R.drawable.ic_menu_close_clear_cancel);
         arrowup.setDisplayHomeAsUpEnabled(true);    // Enable the "up" button
-        // todo: add save button to toolbar?
 
         /* ------- SPINNER NAILPOLISH COLOR ------- */
         spinnercolor = (Spinner) findViewById(R.id.spinner_color);  // get the selected dropdown list value - Spinner element
@@ -88,12 +88,17 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                     Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_SHORT).show();
 
                     // making input field text + spinner blank
-                    editTextName.setText("");
+                    /*editTextName.setText("");
                     editTextID.setText("");
                     editTextBrand.setText("");
                     editTextCollection.setText("");
                     spinnercolor.setSelection(0);
-                    spinnerfinish.setSelection(0);
+                    spinnerfinish.setSelection(0);*/
+
+                    // go back to Main Activity
+                    Log.d(TAG, "AddNew() go back to MainActivity()..." );
+                    Intent intent = new Intent(this, MainActivity.class); /** runtime binding between mainactivity and addnew activity */
+                    startActivity(intent);
                 }
             }
         }
