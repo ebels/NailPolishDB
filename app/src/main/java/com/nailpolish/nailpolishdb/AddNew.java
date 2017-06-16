@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextName, editTextID, editTextBrand,editTextCollection;
     private Button btnAdd;
     private static final String TAG = AddNew.class.getSimpleName();
+    private ImageButton btnimg;
+    private int PICK_IMAGE_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,51 +59,59 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
         /* ------- BUTTONS ------- */
         btnAdd = (Button) findViewById(R.id.button_addnp);
         btnAdd.setOnClickListener(this);
+
+        btnimg = (ImageButton) findViewById(R.id.imageButton);
+        btnimg.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        String name = editTextName.getText().toString();
-        String npid = editTextID.getText().toString();
-        String brand = editTextBrand.getText().toString();
-        String collection = editTextCollection.getText().toString();
-        String color = spinnercolor.getSelectedItem().toString();
-        String finish = spinnerfinish.getSelectedItem().toString();
-        String selectedcolor = "Select a color";
-        String selectedfinish = "Select a finish";
+        switch (v.getId()) {
+            case R.id.button_addnp:
+                String name = editTextName.getText().toString();
+                String npid = editTextID.getText().toString();
+                String brand = editTextBrand.getText().toString();
+                String collection = editTextCollection.getText().toString();
+                String color = spinnercolor.getSelectedItem().toString();
+                String finish = spinnerfinish.getSelectedItem().toString();
+                String selectedcolor = "Select a color";
+                String selectedfinish = "Select a finish";
 
-        // Check if fields are empty then display message, else insert entries in database
-        if (name.matches("") && npid.matches("") && brand.matches("") && collection.matches("")) {
-            Toast.makeText(this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
-        } else {
-
-            if (spinnercolor.getSelectedItem().toString().equals(selectedcolor)) {  //check if color + finish is selected
-                Toast.makeText(this, "Please select a color!", Toast.LENGTH_SHORT).show();
-            } else {
-                if (spinnerfinish.getSelectedItem().toString().equals(selectedfinish)) {    //check if color + finish is selected
-                    Toast.makeText(this, "Please select a finish!", Toast.LENGTH_SHORT).show();
+                // Check if fields are empty then display message, else insert entries in database
+                if (name.matches("") && npid.matches("") && brand.matches("") && collection.matches("")) {
+                    Toast.makeText(this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Insert Data to database
-                    NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
-                    Log.d(TAG, "onClick() Write data in database..." );
-                    DbHelper.insertNP(name,npid,brand,collection,color,finish);
-                    Log.d(TAG, "onClick() Successfully created entry..." );
-                    Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_SHORT).show();
 
-                    // making input field text + spinner blank
-                    /*editTextName.setText("");
-                    editTextID.setText("");
-                    editTextBrand.setText("");
-                    editTextCollection.setText("");
-                    spinnercolor.setSelection(0);
-                    spinnerfinish.setSelection(0);*/
+                    if (spinnercolor.getSelectedItem().toString().equals(selectedcolor)) {  //check if color + finish is selected
+                        Toast.makeText(this, "Please select a color!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (spinnerfinish.getSelectedItem().toString().equals(selectedfinish)) {    //check if color + finish is selected
+                            Toast.makeText(this, "Please select a finish!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // Insert Data to database
+                            NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
+                            Log.d(TAG, "onClick() Write data in database..." );
+                            DbHelper.insertNP(name,npid,brand,collection,color,finish);
+                            Log.d(TAG, "onClick() Successfully created entry..." );
+                            Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_SHORT).show();
 
-                    // go back to Main Activity
-                    Log.d(TAG, "AddNew() go back to MainActivity()..." );
-                    Intent intent = new Intent(this, MainActivity.class); /** runtime binding between mainactivity and addnew activity */
-                    startActivity(intent);
+                            // go back to Main Activity
+                            Log.d(TAG, "AddNew() go back to MainActivity()..." );
+                            Intent intent = new Intent(this, MainActivity.class); /** runtime binding between mainactivity and addnew activity */
+                            startActivity(intent);
+                        }
+                    }
                 }
-            }
+                break;
+
+            case R.id.imageButton:
+                Intent intent = new Intent();
+                // Show only images, no videos or anything else
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                // Always show the chooser (if there are multiple options available)
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+                break;
         }
     }
 }
