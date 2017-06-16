@@ -1,7 +1,12 @@
 package com.nailpolish.nailpolishdb;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.nfc.Tag;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,12 +17,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.io.IOException;
+
+import static android.R.attr.data;
 
 
 public class AddNew extends AppCompatActivity implements View.OnClickListener {
 
+    private static final int RESULT_LOAD_IMAGE = 1;
     private Spinner spinnercolor, spinnerfinish;
     private ArrayAdapter adaptercolor, adapterfinish;
     private EditText editTextName, editTextID, editTextBrand,editTextCollection;
@@ -67,6 +78,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            //Add new NP
             case R.id.button_addnp:
                 String name = editTextName.getText().toString();
                 String npid = editTextID.getText().toString();
@@ -104,14 +116,43 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                 }
                 break;
 
+            //Add image from gallery
             case R.id.imageButton:
-                Intent intent = new Intent();
+                /*Intent intent = new Intent();
                 // Show only images, no videos or anything else
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 // Always show the chooser (if there are multiple options available)
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);*/
+
+                Intent i = new Intent(
+                        Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, RESULT_LOAD_IMAGE);
+
                 break;
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            ImageView imageView = (ImageView) findViewById(R.id.imageView2);
+            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
         }
     }
 }
