@@ -1,13 +1,8 @@
 package com.nailpolish.nailpolishdb;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -15,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,17 +18,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 
 
 public class AddNew extends AppCompatActivity implements View.OnClickListener {
 
-    private static final int RESULT_LOAD_IMAGE = 1;
     private Spinner spinnercolor, spinnerfinish;
     private ArrayAdapter adaptercolor, adapterfinish;
     private EditText editTextName, editTextID, editTextBrand,editTextCollection;
@@ -43,7 +31,6 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
     private ImageButton btnimg;
 
     ImageView viewImage;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,20 +62,20 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
         editTextBrand = (EditText) findViewById(R.id.editText_brand);
         editTextCollection = (EditText) findViewById(R.id.editText_collection);
 
-        /* ------- BUTTONS ------- */
+        /* ------- BUTTONS + IMAGEVIEW------- */
         btnAdd = (Button) findViewById(R.id.button_addnp);
         btnAdd.setOnClickListener(this);
-
         btnimg = (ImageButton) findViewById(R.id.imageButton);
         btnimg.setOnClickListener(this);
-
         viewImage=(ImageView)findViewById(R.id.imageView);
     }
 
+    /* ------- ONCLICK BUTTONS------- */
+    // onClick event, switch/case for multiple onClickListener events in one activty
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            //Add new NP
+            /* ------- ADD NEW NAILPOLISH ------- */
             case R.id.button_addnp:
                 String name = editTextName.getText().toString();
                 String npid = editTextID.getText().toString();
@@ -126,11 +113,8 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                 }
                 break;
 
-            //select image from gallery
+            /* ------- SELECT IMAGE ------- */
             case R.id.imageButton:
-                /*Intent i = new Intent(
-                        Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(i, RESULT_LOAD_IMAGE);*/
                 selectImage();
                 break;
         }
@@ -138,24 +122,23 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
 
     //select image from gallery or take photo
     private void selectImage() {
-        //Create AlertDialog
+        //Create AlertDialog: choose camera or gallery
         final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
         AlertDialog.Builder builder = new AlertDialog.Builder(AddNew.this);
         builder.setTitle("Add Photo!");
         builder.setItems(options, new DialogInterface.OnClickListener() {
+            //OnClick event for different choices: camera, gallery, cancel
             @Override
             public void onClick(DialogInterface dialog, int item) {
                 if (options[item].equals("Take Photo"))
-                {
-                    //Take photo / camera
+                {   //Take photo / camera
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
                     startActivityForResult(intent, 1);
                 }
                 else if (options[item].equals("Choose from Gallery"))
-                {
-                    //Choose image from gallery
+                {   //Choose image from gallery
                     Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(intent, 2);
 
