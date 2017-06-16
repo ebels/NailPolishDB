@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".AddNew">
+        <activity android:name=".AddNew"
             android:parentActivityName=".MainActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -24,7 +24,7 @@
                 android:value=".MainActivity" />
         </activity>
 
-        <activity android:name=".ViewDatabase">
+        <activity android:name=".ViewDatabase"
             android:parentActivityName=".MainActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -41,7 +41,7 @@
                 android:value=".MainActivity" />
         </activity>
 
-        <activity android:name=".Details">
+        <activity android:name=".Details"
             android:parentActivityName=".ViewDatabase" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -49,7 +49,7 @@
                 android:value=".ViewDatabase" />
         </activity>
 
-        <activity android:name=".Edit">
+        <activity android:name=".Edit"
             android:parentActivityName=".ViewDatabase" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
