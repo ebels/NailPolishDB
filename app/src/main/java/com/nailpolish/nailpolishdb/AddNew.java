@@ -166,6 +166,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
         builder.show();
     }
 
+    //todo: check if code works in simple "show picture" app
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
