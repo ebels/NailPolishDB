@@ -2,6 +2,9 @@ package com.nailpolish.nailpolishdb;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
@@ -19,16 +22,20 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 
 public class AddNew extends AppCompatActivity implements View.OnClickListener {
 
+    private static final int RESULT_LOAD_IMAGE = 2;
     private Spinner spinnercolor, spinnerfinish;
     private ArrayAdapter adaptercolor, adapterfinish;
     private EditText editTextName, editTextID, editTextBrand,editTextCollection;
     private Button btnAdd;
     private static final String TAG = AddNew.class.getSimpleName();
     private ImageButton btnimg;
+    private Bitmap bmp;
 
     ImageView viewImage;
 
@@ -132,6 +139,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
             public void onClick(DialogInterface dialog, int item) {
                 if (options[item].equals("Take Photo"))
                 {   //Take photo / camera
+                    //todo: take photo from camera : currently code not working
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
@@ -150,5 +158,26 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
             }
         });
         builder.show();
+    }
+
+    @Override
+    protected void onActivityResult(int reqCode, int resultCode, Intent data) {
+        super.onActivityResult(reqCode, resultCode, data);
+
+        //todo: fixed imageiew size, show selected photo in there
+        if (resultCode == RESULT_OK) {
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                viewImage.setImageBitmap(selectedImage);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(AddNew.this, "Something went wrong", Toast.LENGTH_LONG).show();
+            }
+
+        }else {
+            Toast.makeText(AddNew.this, "You haven't picked Image",Toast.LENGTH_LONG).show();
+        }
     }
 }
