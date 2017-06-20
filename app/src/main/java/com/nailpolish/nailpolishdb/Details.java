@@ -3,6 +3,7 @@ package com.nailpolish.nailpolishdb;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,7 @@ public class Details extends AppCompatActivity {
         TextView tvcollection = (TextView) findViewById(R.id.textView_collection);
         TextView tvcolor = (TextView) findViewById(R.id.textView_color);
         TextView tvfinish = (TextView) findViewById(R.id.textView_finish);
+        ImageView imageView = (ImageView) findViewById(R.id.imageView_details);
 
         //todo: method in dbhelper class? needed to set name from database to textview; also needed in edit.java
         Log.d(TAG, "onCreate() Get Intent from ViewDatabase class..." );
@@ -60,6 +63,12 @@ public class Details extends AppCompatActivity {
                     collection = cursor.getString(cursor.getColumnIndex("collection"));
                     color = cursor.getString(cursor.getColumnIndex("color"));
                     finish = cursor.getString(cursor.getColumnIndex("finish"));
+                    byte[] image = cursor.getBlob(cursor.getColumnIndex("image"));  //get image from database
+                    if (image != null)
+                    {
+                        Bitmap bmp= ImageHelper.getImage(image);    // convert it from byte array to bitmap
+                        imageView.setImageBitmap(bmp);  // set bitmap to ImageView
+                    }
                 } while (cursor.moveToNext());
             }
         }

@@ -3,6 +3,8 @@ package com.nailpolish.nailpolishdb;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
@@ -20,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+
 
 public class AddNew extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,6 +36,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = AddNew.class.getSimpleName();
     private ImageButton btnimg;
     private ImageView viewImage;
+    private Image img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +79,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
     /* ------- ONCLICK BUTTONS------- */
     // onClick event, switch/case for multiple onClickListener events in one activty
     @Override
+    //todo: onClicklistener like in details.java
     public void onClick(View v) {
         switch (v.getId()) {
             /* ------- ADD NEW NAILPOLISH ------- */
@@ -86,6 +92,10 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                 String finish = spinnerfinish.getSelectedItem().toString();
                 String selectedcolor = "Select a color";
                 String selectedfinish = "Select a finish";
+
+                // get image form ImageView and convert into byte array
+                Bitmap bitmap = ((BitmapDrawable)viewImage.getDrawable()).getBitmap();
+                byte[] image = ImageHelper.getImageBytes(bitmap);
 
                 //Before inserting into database, need to convert Bitmap image into byte array first then apply it using database query
                 //When retrieving from database, you certainly have a byte array of image, what you need to do is to convert byte array back to original image. So, you have to make use of BitmapFactory to decode
@@ -104,7 +114,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                             // Insert Data to database
                             DBHelper DbHelper = new DBHelper(getApplicationContext());
                             Log.d(TAG, "onClick() Write data in database..." );
-                            DbHelper.insertNP(name,npid,brand,collection,color,finish);
+                            DbHelper.insertNP(name,npid,brand,collection,color,finish, image);
                             Log.d(TAG, "onClick() Successfully created entry..." );
                             Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_SHORT).show();
 
