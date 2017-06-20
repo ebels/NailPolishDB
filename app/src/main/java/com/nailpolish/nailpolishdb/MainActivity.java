@@ -1,7 +1,6 @@
 package com.nailpolish.nailpolishdb;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(Toolbar);
 
         // Create database on Startup
-        NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
+        DBHelper DbHelper = new DBHelper(getApplicationContext());
         DbHelper.getWritableDatabase();
     }
 

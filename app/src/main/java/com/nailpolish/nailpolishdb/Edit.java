@@ -63,7 +63,7 @@ public class Edit extends AppCompatActivity implements View.OnClickListener {
         // TODO: method in dbhelper class? needed to set name from database to edittext; also needed in details class
         //read data from database
         Log.d(TAG, "Call method fetchentireNP() ...");
-        NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
+        DBHelper dbHelper = new DBHelper(getApplicationContext());
         Cursor cursor = dbHelper.fetchentireNP(id);
 
         cursor.moveToFirst();
@@ -123,7 +123,7 @@ public class Edit extends AppCompatActivity implements View.OnClickListener {
                     Toast.makeText(this, "Please select a finish!", Toast.LENGTH_SHORT).show();
                 } else {
                     // Insert Data to database
-                    NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
+                    DBHelper DbHelper = new DBHelper(getApplicationContext());
                     Log.d(TAG, "onClick() Write data in database..." );
                     DbHelper.updateNP(id,name,npid,brand,collection,color,finish);
                     Log.d(TAG, "onClick() Successfully updated entry..." );

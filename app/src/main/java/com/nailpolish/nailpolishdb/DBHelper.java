@@ -3,20 +3,17 @@ package com.nailpolish.nailpolishdb;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 
 /**
  * Created by ebelsheiser on 03.04.2017.
  */
 
-public class NailPolishDBHelper extends SQLiteOpenHelper{
+public class DBHelper extends SQLiteOpenHelper{
 
-    private static final String TAG = NailPolishDBHelper.class.getSimpleName();
+    private static final String TAG = DBHelper.class.getSimpleName();
 
     /* ------- DEFINE CONSTANTS ------- */
     public static final String DB_NAME = "nailpolish_list.db";
@@ -30,6 +27,7 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
     public static final String COLUMN_COLLECTION = "collection";
     public static final String COLUMN_COLOR = "color";
     public static final String COLUMN_FINISH = "finish";
+    public static final String COLUMN_IMAGE = "image";
 
 
     public static final String SQL_CREATE_ENTRIES =
@@ -40,13 +38,14 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
                     COLUMN_BRAND + " TEXT, " +
                     COLUMN_COLLECTION + " TEXT, " +
                     COLUMN_COLOR + " TEXT, " +
-                    COLUMN_FINISH + " TEXT)";
+                    COLUMN_FINISH + " TEXT)" +
+                    COLUMN_IMAGE+"BLOBNOTNULL";
 
     public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TABLE_NAME;
 
     /* ------- CONSTRUCTOR ------- */
-    public NailPolishDBHelper (Context context) {
+    public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -61,7 +60,7 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
         onCreate(db);   // Create tables again
     }
 
-    public void insertNP (String name, String npid, String brand, String collection, String color, String finish) {
+    public void insertNP (String name, String npid, String brand, String collection, String color, String finish, byte[] imageBytes) {
         Log.d(TAG, "insertNP() making database writable");
         SQLiteDatabase db = this.getWritableDatabase(); // Gets the data repository in write mode
 
@@ -73,6 +72,7 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
         values.put(COLUMN_COLLECTION, collection);
         values.put(COLUMN_COLOR, color);
         values.put(COLUMN_FINISH, finish);
+        values.put(COLUMN_IMAGE, imageBytes);
 
         Log.d(TAG, "insertNP() executing query, inserting entries");
         db.insert(TABLE_NAME, null, values);    // Insert the new row
@@ -113,7 +113,8 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
                 COLUMN_BRAND,
                 COLUMN_COLLECTION,
                 COLUMN_COLOR,
-                COLUMN_FINISH
+                COLUMN_FINISH,
+                COLUMN_IMAGE
         };
 
         Log.d(TAG, "fetchallNPs() Cursor..." );
@@ -157,7 +158,8 @@ public class NailPolishDBHelper extends SQLiteOpenHelper{
                 COLUMN_BRAND,
                 COLUMN_COLLECTION,
                 COLUMN_COLOR,
-                COLUMN_FINISH
+                COLUMN_FINISH,
+                COLUMN_IMAGE
         };
 
         // Filter results WHERE "_id" = 'id'

@@ -46,7 +46,7 @@ public class Details extends AppCompatActivity {
 
         //get nail polish data from database
         Log.d(TAG, "Call method fetchentireNP() ...");
-        NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
+        DBHelper dbHelper = new DBHelper(getApplicationContext());
         Cursor cursor = dbHelper.fetchentireNP(_id);
 
         cursor.moveToFirst();
@@ -90,7 +90,7 @@ public class Details extends AppCompatActivity {
                 });
                 alertdelete.setPositiveButton(R.string.button_delete_nailpolish, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
+                        DBHelper dbHelper = new DBHelper(getApplicationContext());
                         Log.d(TAG, "delete button() calling method deleteNP ...");
                         dbHelper.deleteNP(_id);
                         Intent intent = new Intent(Details.this, ViewDatabase.class);

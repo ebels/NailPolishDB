@@ -34,7 +34,7 @@ public class ViewDatabase extends AppCompatActivity {
         /* ------- SHOW ITEMS FROM DB IN LISTVIEW ------- */
         Log.d(TAG, "onCreate() create cursor fetchallNPs()..." );
 
-        NailPolishDBHelper dbHelper = new NailPolishDBHelper(getApplicationContext());
+        DBHelper dbHelper = new DBHelper(getApplicationContext());
         Cursor cursor = dbHelper.fetchAllNPs();
 
         // For the cursor adapter, specify which columns go into which views
