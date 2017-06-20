@@ -2,9 +2,7 @@ package com.nailpolish.nailpolishdb;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
@@ -21,23 +19,19 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 
 public class AddNew extends AppCompatActivity implements View.OnClickListener {
 
-    private static final int RESULT_LOAD_IMAGE = 2;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_PICK_IMAGE = 2;
     private Spinner spinnercolor, spinnerfinish;
     private ArrayAdapter adaptercolor, adapterfinish;
     private EditText editTextName, editTextID, editTextBrand,editTextCollection;
     private Button btnAdd;
     private static final String TAG = AddNew.class.getSimpleName();
     private ImageButton btnimg;
-    private Bitmap bmp;
-
-    ImageView viewImage;
+    private ImageView viewImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +68,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
         btnAdd.setOnClickListener(this);
         btnimg = (ImageButton) findViewById(R.id.imageButton);
         btnimg.setOnClickListener(this);
-        viewImage=(ImageView)findViewById(R.id.imageView);
+        viewImage=(ImageView)findViewById(R.id.imageView_addnew);
     }
 
     /* ------- ONCLICK BUTTONS------- */
@@ -93,6 +87,9 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                 String selectedcolor = "Select a color";
                 String selectedfinish = "Select a finish";
 
+                //Before inserting into database, need to convert Bitmap image into byte array first then apply it using database query
+                //When retrieving from database, you certainly have a byte array of image, what you need to do is to convert byte array back to original image. So, you have to make use of BitmapFactory to decode
+
                 // Check if fields are empty then display message, else insert entries in database
                 if (name.matches("") && npid.matches("") && brand.matches("") && collection.matches("")) {
                     Toast.makeText(this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
@@ -105,7 +102,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                             Toast.makeText(this, "Please select a finish!", Toast.LENGTH_SHORT).show();
                         } else {
                             // Insert Data to database
-                            NailPolishDBHelper DbHelper = new NailPolishDBHelper(getApplicationContext());
+                            DBHelper DbHelper = new DBHelper(getApplicationContext());
                             Log.d(TAG, "onClick() Write data in database..." );
                             DbHelper.insertNP(name,npid,brand,collection,color,finish);
                             Log.d(TAG, "onClick() Successfully created entry..." );
@@ -139,16 +136,16 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
             public void onClick(DialogInterface dialog, int item) {
                 if (options[item].equals("Take Photo"))
                 {   //Take photo / camera
-                    //todo: take photo from camera : currently code not working
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-                    startActivityForResult(intent, 1);
+                    Intent IntentTakePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    if (IntentTakePicture.resolveActivity(getPackageManager()) != null) {
+                        Log.d(TAG, "AddNew() if condition startActivityForResult...");
+                        startActivityForResult(IntentTakePicture, REQUEST_IMAGE_CAPTURE);
+                    }
                 }
                 else if (options[item].equals("Choose from Gallery"))
                 {   //Choose image from gallery
-                    Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(intent, 2);
+                    Intent IntentPickPhoto = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(IntentPickPhoto, REQUEST_PICK_IMAGE);
 
                 }
                 else if (options[item].equals("Cancel")) {
@@ -161,23 +158,18 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
     }
 
     @Override
-    protected void onActivityResult(int reqCode, int resultCode, Intent data) {
+    public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
 
-        //todo: fixed imageiew size, show selected photo in there
-        if (resultCode == RESULT_OK) {
-            try {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                viewImage.setImageBitmap(selectedImage);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                Toast.makeText(AddNew.this, "Something went wrong", Toast.LENGTH_LONG).show();
-            }
-
-        }else {
-            Toast.makeText(AddNew.this, "You haven't picked Image",Toast.LENGTH_LONG).show();
+        if (reqCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            viewImage.setImageBitmap(imageBitmap);
+        } else if (reqCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK) {
+            Uri selectedImage = data.getData();
+            viewImage.setImageURI(selectedImage);
+        } else {
+            Toast.makeText(AddNew.this, "You haven't picked an image",Toast.LENGTH_LONG).show();
         }
     }
 }
