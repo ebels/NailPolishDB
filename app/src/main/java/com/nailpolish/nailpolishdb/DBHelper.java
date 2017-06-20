@@ -39,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper{
                     COLUMN_COLLECTION + " TEXT, " +
                     COLUMN_COLOR + " TEXT, " +
                     COLUMN_FINISH + " TEXT, " +
-                    COLUMN_IMAGE + "BLOB)";
+                    COLUMN_IMAGE + " BLOB);";
 
     public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TABLE_NAME;
@@ -123,7 +123,7 @@ public class DBHelper extends SQLiteOpenHelper{
                 projection, // columns to return
                 null,       // filter results (columns for the WHERE clause ...)
                 null,       // filter results (values for the WHERE clause ...)
-                null,       // goup the rows
+                null,       // group the rows
                 null,       // filter by groups
                 null        // sort order
                 );
