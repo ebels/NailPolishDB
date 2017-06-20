@@ -17,7 +17,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
     /* ------- DEFINE CONSTANTS ------- */
     public static final String DB_NAME = "nailpolish_list.db";
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 2;
     public static final String TABLE_NAME = "nailpolish_list";
 
     public static final String COLUMN_ID = " _id ";
@@ -38,8 +38,8 @@ public class DBHelper extends SQLiteOpenHelper{
                     COLUMN_BRAND + " TEXT, " +
                     COLUMN_COLLECTION + " TEXT, " +
                     COLUMN_COLOR + " TEXT, " +
-                    COLUMN_FINISH + " TEXT)" +
-                    COLUMN_IMAGE+"BLOBNOTNULL";
+                    COLUMN_FINISH + " TEXT, " +
+                    COLUMN_IMAGE + "BLOB)";
 
     public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TABLE_NAME;
