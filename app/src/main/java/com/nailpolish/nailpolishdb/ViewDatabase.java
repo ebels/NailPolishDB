@@ -32,22 +32,26 @@ public class ViewDatabase extends AppCompatActivity {
         arrowup.setDisplayHomeAsUpEnabled(true);    // Enable the "up" button
 
         /* ------- SHOW ITEMS FROM DB IN LISTVIEW ------- */
-        Log.d(TAG, "onCreate() create cursor fetchallNPs()..." );
+        Log.d(TAG, "ViewDatabase() Initialize Helper...");
 
         DBHelper dbHelper = new DBHelper(getApplicationContext());
+        Log.d(TAG, "ViewDatabase() Cursor......" );
         Cursor cursor = dbHelper.fetchAllNPs();
+        Log.d(TAG, "ViewDatabase() After Cursor..." );
 
         // For the cursor adapter, specify which columns go into which views
         final String[] fromColumns = new String[]{dbHelper.COLUMN_NAME, dbHelper.COLUMN_BRAND, dbHelper.COLUMN_COLOR};
+        Log.d(TAG, "ViewDatabase() after String columns..." );
         int[] toViews = {R.id.name_tv, R.id.brand_tv, R.id.color_tv};
+        Log.d(TAG, "ViewDatabase() after String toViews..." );
 
-        Log.d(TAG, "onCreate() create Data Adapter..." );
+        Log.d(TAG, "ViewDatabase() create Data Adapter..." );
         // Create an adapter that will be used to display the loaded data.
         dataAdapter = new SimpleCursorAdapter(this,
                 R.layout.items, cursor,
                 fromColumns, toViews, 0);   // pass null for the cursor, then update it in onLoadFinished()
 
-        Log.d(TAG, "onCreate() Assign ListView to Adapter..." );
+        Log.d(TAG, "ViewDatabase() Assign ListView to Adapter..." );
         listView = (ListView) findViewById(R.id.listview1);
         listView.setAdapter(dataAdapter);   //Assign adpter to ListView
 

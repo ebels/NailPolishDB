@@ -37,6 +37,8 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
     private ImageButton btnimg;
     private ImageView viewImage;
     private Image img;
+    private Bitmap bitmap;
+    private byte[] image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +96,10 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                 String selectedfinish = "Select a finish";
 
                 // get image form ImageView and convert into byte array
-                Bitmap bitmap = ((BitmapDrawable)viewImage.getDrawable()).getBitmap();
-                byte[] image = ImageHelper.getImageBytes(bitmap);
+                if (viewImage != null) {
+                    bitmap = ((BitmapDrawable) viewImage.getDrawable()).getBitmap();
+                    image = ImageHelper.getImageBytes(bitmap);
+                }
 
                 //Before inserting into database, need to convert Bitmap image into byte array first then apply it using database query
                 //When retrieving from database, you certainly have a byte array of image, what you need to do is to convert byte array back to original image. So, you have to make use of BitmapFactory to decode

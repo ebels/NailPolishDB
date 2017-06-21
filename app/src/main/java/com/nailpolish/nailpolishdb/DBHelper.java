@@ -17,7 +17,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
     /* ------- DEFINE CONSTANTS ------- */
     public static final String DB_NAME = "nailpolish_list.db";
-    public static final int DB_VERSION = 2;
+    public static final int DB_VERSION = 1;
     public static final String TABLE_NAME = "nailpolish_list";
 
     public static final String COLUMN_ID = " _id ";
@@ -106,6 +106,7 @@ public class DBHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getReadableDatabase();
 
         // Define a projection that specifies which columns from the database  will actually be used after this query
+        Log.d(TAG, "DBHelper() Create String projection..." );
         String[] projection = {
                 COLUMN_ID,
                 COLUMN_NAME,
@@ -117,7 +118,7 @@ public class DBHelper extends SQLiteOpenHelper{
                 COLUMN_IMAGE
         };
 
-        Log.d(TAG, "fetchallNPs() Cursor..." );
+        Log.d(TAG, "DBHelper() Cursor..." );
         Cursor cursor = db.query(
                 TABLE_NAME, // Table name
                 projection, // columns to return
@@ -127,7 +128,7 @@ public class DBHelper extends SQLiteOpenHelper{
                 null,       // filter by groups
                 null        // sort order
                 );
-        Log.d(TAG, "fetchallNPs() return cursor..." );
+        Log.d(TAG, "DBHelper() return cursor..." );
         return cursor;
     }
 
