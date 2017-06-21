@@ -83,7 +83,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
     /* ------- ONCLICK BUTTONS------- */
     // onClick event, switch/case for multiple onClickListener events in one activty
     @Override
-    //todo: onClicklistener like in details.java
+    //todo: onClicklistener like in details.java? > search in android documentation for it
     public void onClick(View v) {
         switch (v.getId()) {
             /* ------- ADD NEW NAILPOLISH ------- */
@@ -104,7 +104,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                     //image = ImageHelper.getImageBytes(bitmap);
 
 
-                // todo: get Imagepath from ImageView
+                // todo: get Imagepath from ImageView or copy image to directory and save image path in db
 
 
 
