@@ -35,15 +35,11 @@ public class ViewDatabase extends AppCompatActivity {
         Log.d(TAG, "ViewDatabase() Initialize Helper...");
 
         DBHelper dbHelper = new DBHelper(getApplicationContext());
-        Log.d(TAG, "ViewDatabase() Cursor......" );
         Cursor cursor = dbHelper.fetchAllNPs();
-        Log.d(TAG, "ViewDatabase() After Cursor..." );
 
         // For the cursor adapter, specify which columns go into which views
         final String[] fromColumns = new String[]{dbHelper.COLUMN_NAME, dbHelper.COLUMN_BRAND, dbHelper.COLUMN_COLOR};
-        Log.d(TAG, "ViewDatabase() after String columns..." );
         int[] toViews = {R.id.name_tv, R.id.brand_tv, R.id.color_tv};
-        Log.d(TAG, "ViewDatabase() after String toViews..." );
 
         Log.d(TAG, "ViewDatabase() create Data Adapter..." );
         // Create an adapter that will be used to display the loaded data.

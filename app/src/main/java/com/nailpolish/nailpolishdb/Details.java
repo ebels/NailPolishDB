@@ -63,12 +63,12 @@ public class Details extends AppCompatActivity {
                     collection = cursor.getString(cursor.getColumnIndex("collection"));
                     color = cursor.getString(cursor.getColumnIndex("color"));
                     finish = cursor.getString(cursor.getColumnIndex("finish"));
-                    byte[] image = cursor.getBlob(cursor.getColumnIndex("image"));  //get image from database
+                    /*byte[] image = cursor.getBlob(cursor.getColumnIndex("image"));  //get image from database
                     if (image != null)
                     {
                         Bitmap bmp= ImageHelper.getImage(image);    // convert it from byte array to bitmap
                         imageView.setImageBitmap(bmp);  // set bitmap to ImageView
-                    }
+                    }*/
                 } while (cursor.moveToNext());
             }
         }

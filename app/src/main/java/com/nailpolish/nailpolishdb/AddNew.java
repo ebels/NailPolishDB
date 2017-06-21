@@ -2,6 +2,7 @@ package com.nailpolish.nailpolishdb;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
@@ -39,6 +40,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
     private Image img;
     private Bitmap bitmap;
     private byte[] image;
+    private String imageFilePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,13 +98,15 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                 String selectedfinish = "Select a finish";
 
                 // get image form ImageView and convert into byte array
-                if (viewImage != null) {
-                    bitmap = ((BitmapDrawable) viewImage.getDrawable()).getBitmap();
-                    image = ImageHelper.getImageBytes(bitmap);
-                }
-
                 //Before inserting into database, need to convert Bitmap image into byte array first then apply it using database query
                 //When retrieving from database, you certainly have a byte array of image, what you need to do is to convert byte array back to original image. So, you have to make use of BitmapFactory to decode
+                    //bitmap = ((BitmapDrawable) viewImage.getDrawable()).getBitmap();
+                    //image = ImageHelper.getImageBytes(bitmap);
+
+
+                // todo: get Imagepath from ImageView
+
+
 
                 // Check if fields are empty then display message, else insert entries in database
                 if (name.matches("") && npid.matches("") && brand.matches("") && collection.matches("")) {
@@ -118,7 +122,8 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                             // Insert Data to database
                             DBHelper DbHelper = new DBHelper(getApplicationContext());
                             Log.d(TAG, "onClick() Write data in database..." );
-                            DbHelper.insertNP(name,npid,brand,collection,color,finish, image);
+                            //DbHelper.insertNP(name,npid,brand,collection,color,finish,image);
+                            DbHelper.insertNP(name,npid,brand,collection,color,finish);
                             Log.d(TAG, "onClick() Successfully created entry..." );
                             Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_SHORT).show();
 
@@ -179,9 +184,11 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             viewImage.setImageBitmap(imageBitmap);
-        } else if (reqCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK) {
+        } else if (reqCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK && data != null) {
             Uri selectedImage = data.getData();
-            viewImage.setImageURI(selectedImage);
+            if (selectedImage != null) {
+                viewImage.setImageURI(selectedImage);
+            }
         } else {
             Toast.makeText(AddNew.this, "You haven't picked an image",Toast.LENGTH_LONG).show();
         }
