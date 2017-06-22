@@ -3,7 +3,8 @@
     package="com.nailpolish.nailpolishdb">
 
     <uses-permission android:name="android.hardware.camera"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"

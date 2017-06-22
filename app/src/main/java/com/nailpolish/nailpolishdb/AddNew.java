@@ -1,5 +1,6 @@
 package com.nailpolish.nailpolishdb;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -7,6 +8,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.net.Uri;
+import android.nfc.Tag;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -24,6 +27,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Random;
 
 
 public class AddNew extends AppCompatActivity implements View.OnClickListener {
@@ -37,10 +43,10 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = AddNew.class.getSimpleName();
     private ImageButton btnimg;
     private ImageView viewImage;
-    private Image img;
-    private Bitmap bitmap;
-    private byte[] image;
-    private String imageFilePath;
+    private String srcImagePath;
+    private Bitmap imageBitmap;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,11 +109,6 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                     //bitmap = ((BitmapDrawable) viewImage.getDrawable()).getBitmap();
                     //image = ImageHelper.getImageBytes(bitmap);
 
-
-                // todo: get Imagepath from ImageView or copy image to directory and save image path in db
-
-
-
                 // Check if fields are empty then display message, else insert entries in database
                 if (name.matches("") && npid.matches("") && brand.matches("") && collection.matches("")) {
                     Toast.makeText(this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
@@ -119,6 +120,32 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                         if (spinnerfinish.getSelectedItem().toString().equals(selectedfinish)) {    //check if color + finish is selected
                             Toast.makeText(this, "Please select a finish!", Toast.LENGTH_SHORT).show();
                         } else {
+                            String intStorageDirectory = getFilesDir().toString();
+                            File imgFolder = new File(intStorageDirectory, "NailPolishImages");
+                            if (imgFolder.exists()) {
+                                Log.d(TAG, "AddNew() Directoy "+ imgFolder + " exists!");
+                            } else {
+                                Log.d(TAG, "AddNew() Creating Directory " + imgFolder+ " ...");
+                                imgFolder.mkdirs();
+                            }
+
+                            // todo: copy image to imgFolder directory and save image path in db
+                            Random generator = new Random();
+                            int n = 10000;
+                            n = generator.nextInt(n);
+                            String fname = "Image-"+ n +".jpg";
+                            File file = new File (imgFolder, fname);
+                            if (file.exists ()) file.delete ();
+                            try {
+                                FileOutputStream out = new FileOutputStream(file);
+                                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                                out.flush();
+                                out.close();
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
                             // Insert Data to database
                             DBHelper DbHelper = new DBHelper(getApplicationContext());
                             Log.d(TAG, "onClick() Write data in database..." );
@@ -127,7 +154,6 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                             Log.d(TAG, "onClick() Successfully created entry..." );
                             Toast.makeText(getApplicationContext(), "Successfully created entry", Toast.LENGTH_SHORT).show();
 
-                            // go back to Main Activity
                             Log.d(TAG, "AddNew() go back to MainActivity()..." );
                             Intent intent = new Intent(this, MainActivity.class); /** runtime binding between mainactivity and addnew activity */
                             startActivity(intent);
@@ -180,9 +206,10 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
 
+        //todo: get src path of selected image
         if (reqCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageBitmap = (Bitmap) extras.get("data");
             viewImage.setImageBitmap(imageBitmap);
         } else if (reqCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK && data != null) {
             Uri selectedImage = data.getData();
