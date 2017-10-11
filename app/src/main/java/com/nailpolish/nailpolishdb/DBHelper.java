@@ -38,8 +38,8 @@ public class DBHelper extends SQLiteOpenHelper{
                     COLUMN_BRAND + " TEXT, " +
                     COLUMN_COLLECTION + " TEXT, " +
                     COLUMN_COLOR + " TEXT, " +
-                    COLUMN_FINISH + " TEXT); " ;
-                    //COLUMN_IMAGE + " BLOB);";
+                    COLUMN_FINISH + " TEXT, " +
+                    COLUMN_IMAGE + " BLOB); " ;
 
     public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TABLE_NAME;
@@ -60,8 +60,8 @@ public class DBHelper extends SQLiteOpenHelper{
         onCreate(db);   // Create tables again
     }
 
-    //public void insertNP (String name, String npid, String brand, String collection, String color, String finish, byte[] image) {
-        public void insertNP (String name, String npid, String brand, String collection, String color, String finish) {
+    public void insertNP (String name, String npid, String brand, String collection, String color, String finish, byte[] image) {
+        //public void insertNP (String name, String npid, String brand, String collection, String color, String finish) {
         Log.d(TAG, "insertNP() making database writable");
         SQLiteDatabase db = this.getWritableDatabase(); // Gets the data repository in write mode
 
@@ -73,7 +73,7 @@ public class DBHelper extends SQLiteOpenHelper{
         values.put(COLUMN_COLLECTION, collection);
         values.put(COLUMN_COLOR, color);
         values.put(COLUMN_FINISH, finish);
-        //values.put(COLUMN_IMAGE, image);
+        values.put(COLUMN_IMAGE, image);
 
         Log.d(TAG, "insertNP() executing query, inserting entries");
         db.insert(TABLE_NAME, null, values);    // Insert the new row
@@ -160,8 +160,8 @@ public class DBHelper extends SQLiteOpenHelper{
                 COLUMN_BRAND,
                 COLUMN_COLLECTION,
                 COLUMN_COLOR,
-                COLUMN_FINISH
-                //COLUMN_IMAGE
+                COLUMN_FINISH,
+                COLUMN_IMAGE
         };
 
         // Filter results WHERE "_id" = 'id'

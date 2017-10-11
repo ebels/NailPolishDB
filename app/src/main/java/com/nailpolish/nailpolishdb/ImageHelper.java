@@ -12,6 +12,7 @@ import java.io.InputStream;
  */
 
 public class ImageHelper {
+    
     // convert from bitmap to byte array
     public static byte[] getImageBytes(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
