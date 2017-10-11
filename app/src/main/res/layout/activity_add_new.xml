@@ -45,21 +45,20 @@
 
     <!-- ID -->
     <EditText
-        android:id="@+id/editText_id"
+        android:id="@+id/editText_quantity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="@string/edittext_hint_id"
+        android:hint="@string/edittext_hint_quantity"
         android:inputType="number"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_name" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_finish" />
 
 
     <!-- BRAND -->
@@ -68,17 +67,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="@string/edittext_hint_brand"
         android:inputType="textPersonName"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_id" />
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/editText_name"
+        app:layout_constraintHorizontal_bias="1.0" />
 
 
     <!-- COLLECTION -->
@@ -87,17 +86,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="11dp"
         android:ems="10"
         android:hint="@string/edittext_hint_collection"
         android:inputType="textPersonName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_brand" />
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/editText_brand"
+        app:layout_constraintHorizontal_bias="1.0" />
 
 
     <!-- COLOR -->
@@ -106,15 +105,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="14dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:spinnerMode="dialog"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/editText_collection"
-        android:spinnerMode="dialog"/>
+        app:layout_constraintHorizontal_bias="1.0" />
 
     <!-- todo: adjust style of spinner -->
     <!-- FINISH -->
@@ -122,16 +121,15 @@
         android:id="@+id/spinner_finish"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="15dp"
         android:layout_marginStart="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_color"
+        android:spinnerMode="dialog"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        android:spinnerMode="dialog"/>
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_color" />
 
 
     <!-- BUTTON AD NAILPOLISH 2 DB -->
@@ -140,40 +138,38 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="297dp"
         android:layout_height="64dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="25dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/button_addpolish2db"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.507" />
 
     <ImageButton
         android:id="@+id/imageButton"
         style="@style/AlertDialog.AppCompat"
         android:layout_width="77dp"
         android:layout_height="70dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="11dp"
-        app:layout_constraintHorizontal_bias="0.027"
+        app:srcCompat="@drawable/ic_action_addphoto"
+        android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_finish"
-        app:srcCompat="@drawable/ic_action_addphoto" />
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/editText_quantity"
+        app:layout_constraintRight_toLeftOf="@+id/imageView_addnew"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView_addnew"
         android:layout_width="132dp"
         android:layout_height="104dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="11dp"
         android:scaleType="fitCenter"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintLeft_toRightOf="@+id/imageButton"
+        app:srcCompat="@android:drawable/ic_menu_report_image"
+        android:layout_marginRight="135dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_finish"
-        app:srcCompat="@android:drawable/ic_menu_report_image" />
+        android:layout_marginTop="19dp"
+        app:layout_constraintTop_toBottomOf="@+id/editText_quantity" />
 
 </android.support.constraint.ConstraintLayout>

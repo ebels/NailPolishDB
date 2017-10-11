@@ -35,7 +35,7 @@
     <string name="toolbar_title_main">Nail Polish Database</string>
     <string name="toolbar_title_addnew">Add new Nail Polish</string>
     <string name="edittext_hint_name">Name</string>
-    <string name="edittext_hint_id">ID</string>
+    <string name="edittext_hint_quantity">Quantity</string>
     <string name="edittext_hint_brand">Brand</string>
     <string name="edittext_hint_collection">Collection</string>
     <string name="toolbar_title_details">Nail Polish Details</string>
@@ -43,7 +43,7 @@
     <string name="textview_finish">Finish:</string>
     <string name="button_delete_nailpolish">Delete</string>
     <string name="button_edit_nailpolish">Edit</string>
-    <string name="textview_id">ID:</string>
+    <string name="textview_quantity">Quantity:</string>
     <string name="textview_brand">Brand:</string>
     <string name="textview_collection">Collection:</string>
     <string name="edittext_hint_color">Color</string>

@@ -1,15 +1,9 @@
 package com.nailpolish.nailpolishdb;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
 import android.net.Uri;
-import android.nfc.Tag;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -26,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Random;
@@ -74,7 +67,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
 
         /* ------- EDITTEXT ------- */
         editTextName = (EditText) findViewById(R.id.editText_name);
-        editTextID = (EditText) findViewById(R.id.editText_id);
+        editTextID = (EditText) findViewById(R.id.editText_quantity);
         editTextBrand = (EditText) findViewById(R.id.editText_brand);
         editTextCollection = (EditText) findViewById(R.id.editText_collection);
 

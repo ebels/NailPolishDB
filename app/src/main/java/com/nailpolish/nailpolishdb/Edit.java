@@ -51,7 +51,7 @@ public class Edit extends AppCompatActivity implements View.OnClickListener {
 
         /* ------- EDITTEXT ------- */
         editTextName = (EditText) findViewById(R.id.editText_name);
-        editTextID = (EditText) findViewById(R.id.editText_id);
+        editTextID = (EditText) findViewById(R.id.editText_quantity);
         editTextBrand = (EditText) findViewById(R.id.editText_brand);
         editTextCollection = (EditText) findViewById(R.id.editText_collection);
 
