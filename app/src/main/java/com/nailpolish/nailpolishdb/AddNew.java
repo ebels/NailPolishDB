@@ -205,8 +205,8 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
             selectedImage = data.getData();
             if (selectedImage != null) {
                 viewImage.setImageURI(selectedImage);
+                //todo: copy img to imgdir and store picked img as blob in database (currently only captured img working)
             }
-            //todo: store picked img in database (currently only captured img working)
         } else {
             Toast.makeText(AddNew.this, "You haven't picked an image",Toast.LENGTH_LONG).show();
         }
