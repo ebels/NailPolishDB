@@ -23,6 +23,8 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 
@@ -120,10 +122,8 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                             }
 
                             // save captured image to imgdir
-                            Random generator = new Random();
-                            int n = 10000;
-                            n = generator.nextInt(n);
-                            String fname = "Image-"+ n +".jpg";
+                            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                            String fname = "JPEG_" + timeStamp + "_";
                             File file = new File (imgFolder, fname);
                             if (file.exists ()) file.delete ();
                             try {
