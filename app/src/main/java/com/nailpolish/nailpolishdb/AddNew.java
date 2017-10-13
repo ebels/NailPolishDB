@@ -213,9 +213,12 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
             viewImage.setImageBitmap(imageBitmap);
             imgArray=ImageHelper.getImageBytes(imageBitmap);
         } else if (reqCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK && data != null) {
+            //todo: can not show details when image was picked from gallery (only phone, API 24 -phone-)
+            //NOTE: retrieve image is ok!
+            //todo: save selected image to database (blob)
             selectedImage = data.getData();
             if (selectedImage != null) {
-                //todo: can not show details when image was picked from gallery (only phone, API 24 -phone-)
+                /*
                 String[] filePathColumn = { MediaStore.Images.Media.DATA };
                 Cursor cursor = getContentResolver().query(selectedImage,
                         filePathColumn, null, null, null);
@@ -228,13 +231,15 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
                 imgArray=ImageHelper.getImageBytes(imageBitmap);
 
                 cursor.close();
+                */
             }
         } else {
             Toast.makeText(AddNew.this, "You haven't picked an image",Toast.LENGTH_LONG).show();
         }
     }
 
-//TODO: when access was granted, 2nd time choose gallery not working (API 24 -phone- and API 23 - emulator-) maybe try without request permission on phone and look if its working - maybe incorrect interacting with permission request
+//TODO: when access was granted, 2nd time choose gallery not working (API 24 -phone- and API 23 - emulator-)
+//TODO: permission request for camera
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void askForPermission() {
         int hasWriteContactsPermission = checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
