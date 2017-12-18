@@ -11,6 +11,4 @@
         android:key="nailpolish_count"
         android:summary="" />
 
-    <!-- todo: Choose: View Information in ListView -->
-
 </PreferenceScreen>

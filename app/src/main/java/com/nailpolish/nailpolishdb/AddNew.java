@@ -239,7 +239,7 @@ public class AddNew extends AppCompatActivity implements View.OnClickListener {
     }
 
 //TODO: when access was granted, 2nd time choose gallery not working (API 24 -phone- and API 23 - emulator-)
-//TODO: permission request for camera
+//TODO: permission request for camera<a
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void askForPermission() {
         int hasWriteContactsPermission = checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE);

@@ -41,7 +41,7 @@ public class Details extends AppCompatActivity {
         TextView tvfinish = (TextView) findViewById(R.id.textView_finish);
         ImageView imageView = (ImageView) findViewById(R.id.imageView_details);
 
-        //todo: method in dbhelper class? needed to set name from database to textview; also needed in edit.java
+        //todo: function in dbhelper class? needed to set name from database to textview; also needed in edit.java
         Log.d(TAG, "onCreate() Get Intent from ViewDatabase class..." );
         final Intent intent = getIntent();
         final String _id = intent.getStringExtra("id");
